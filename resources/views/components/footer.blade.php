@@ -14,36 +14,121 @@
                     <h3 class="text-lg font-semibold mb-3 text-orange-500">Alamat Desa Indrajaya</h3>
                     <p>Kp. Cicurug RT. 013/003 Desa Indrajaya</p>
                     <p>Kec. Sukaratu, Tasikmalaya, Jawa Barat 46415</p>
-                    <p class="mt-3">Email: <a href="desaindrajaya@yahoo.co.id"
-                            class="text-blue-300">desaindrajaya@yah00.co.id</a></p>
-                    <p>Call: (0265) 7523616</p>
+                    <p class="mt-3">Email: <a href="pemdesindrajaya@gmail.com"
+                            class="text-blue-300">pemdesindrajaya@gmail.com</a></p>
                 </div>
                 <!-- Layanan Publik -->
                 <div>
                     <h3 class="text-lg font-semibold mb-3 text-orange-500">Layanan Masyarakat</h3>
                     <ul class="space-y-2">
-                        <li>LPSE</li>
-                        <li>Tata Cara Permohonan Informasi</li>
-                        <li>Satu Data</li>
-                        <li>JDIH</li>
-                        <li>Informasi Publik</li>
-                        <li>Pengaduan Masyarakat</li>
-                        <li>Bursa Kerja</li>
-                        <li>Pengujian Kendaraan Bermotor</li>
+                        <li>
+                            <a href="/kritik-dan-saran" class="flex items-center hover:text-blue-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
+                                    <path
+                                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                                </svg>
+                                Kritik Dan Saran
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/administrasi-penduduk" class="flex items-center hover:text-blue-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
+                                    <path
+                                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                                </svg>
+                                Administrasi Penduduk
+                            </a>
+                        </li>
+                        <li>
+                            <a href="wisata-desa" class="flex items-center hover:text-blue-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
+                                    <path
+                                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                                </svg>
+                                Wisata Desa
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <!-- Sarana Prasarana -->
                 <div>
-                    <h3 class="text-lg font-semibold mb-3 text-orange-500">Link</h3>
+                    <h3 class="text-lg font-semibold mb-3 text-orange-500">Link Navigasi</h3>
                     <ul class="space-y-2">
-                        <li>Rumah Sakit</li>
-                        <li>Puskesmas</li>
-                        <li>Hotel</li>
-                        <li>Wisata Kuliner</li>
-                        <li>Tempat Hiburan dan Rekreasi</li>
-                        <li>Olahraga</li>
-                        <li>Terminal</li>
-                        <li>Angkutan Umum</li>
+                        <li>
+                            <a href="{{ url('/page.ProfileKepalaDesa.index') }}"class="flex items-center hover:text-blue-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
+                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                                </svg>
+                                Profile Kepala Desa
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/data-pegawai" class="flex items-center hover:text-blue-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
+                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                                </svg>
+                                Data Pegawai
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/apbdes" class="flex items-center hover:text-blue-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
+                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                                </svg>
+                                APBDES
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/visi-misi" class="flex items-center hover:text-blue-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
+                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                                </svg>
+                                Visi & Misi
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/umkm" class="flex items-center hover:text-blue-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
+                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                                </svg>
+                                Tentang Desa
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/berita-desa" class="flex items-center hover:text-blue-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
+                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                                </svg>
+                                Berita Desa
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/umkm" class="flex items-center hover:text-blue-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
+                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                                </svg>
+                                UMKM
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/umkm" class="flex items-center hover:text-blue-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
+                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                                </svg>
+                                Agenda Desa
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/umkm" class="flex items-center hover:text-blue-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
+                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                                </svg>
+                                Galeri Desa
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <!-- Media Sosial -->
@@ -99,6 +184,6 @@
 
 <!-- Footer Bawah -->
 <footer class="bg-orange-500 text-white text-center p-4 mt-0">
-    <p>&copy; 2025 Desa Indrajaya. Semua Hak Dilindungi.</p>
+    <p>&copy; 2025 Pemerintahan Desa Indrajaya. Kec.Sukaratu, Kab.Tasikmalaya.</p>
 </footer>
 </div>

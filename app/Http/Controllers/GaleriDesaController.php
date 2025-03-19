@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class KontakController extends Controller
+class GaleriDesaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('page.Laporan.index');
+        return view('page.GaleriDesa.index');
+
     }
 
     /**
@@ -27,17 +28,7 @@ class KontakController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi input
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'message' => 'required|string',
-        ]);
-
-        // Simpan data ke database (opsional)
-        // Contoh: Contact::create($validated);
-
-        return back()->with('success', 'Pesan Anda telah terkirim!');
+        //
     }
 
     /**

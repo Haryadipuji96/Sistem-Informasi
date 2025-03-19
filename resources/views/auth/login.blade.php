@@ -1,4 +1,10 @@
 <x-guest-layout>
+    <!-- Tambahkan Bagian Selamat Datang -->
+    <div class="text-center mb-6">
+        <h1 class="text-3xl font-bold text-gray-800">{{ __('Selamat Datang!') }}</h1>
+        <p class="text-sm text-gray-600">{{ __('Silakan masuk untuk melanjutkan.') }}</p>
+    </div>
+
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
