@@ -6,6 +6,8 @@ use App\Models\Penduduk;
 use Exception;
 use Illuminate\Http\Request;
 
+use function Illuminate\Log\log;
+
 class PendudukController extends Controller
 {
     /**
@@ -79,9 +81,9 @@ class PendudukController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Penduduk $penduduk)
-{
-    try {
+    public function update(Request $request)
+    {
+        // try {
         // Validasi data yang dikirimkan
         $validatedData = $request->validate([
             'nama' => 'required|string|max:255',
@@ -92,15 +94,13 @@ class PendudukController extends Controller
         ]);
 
         // Perbarui data penduduk
-        $penduduk->update($validatedData);
-
-        // Redirect ke halaman index dengan pesan sukses
-        return redirect()->route('penduduk.index')->with('success', 'Data penduduk berhasil diperbarui.');
-    } catch (\Exception $e) {
-        // Tangkap error dan kembalikan pesan error
-        return redirect()->back()->with('error', 'Gagal memperbarui data: ' . $e->getMessage());
+        Penduduk::update($validatedData);
+        // Redirect kelo halaman index dengan pesan sukses
+        // } catch (\Exception $e) {
+        //     // Tangkap error dan kembalikan pesan error
+        //     return redirect()->back()->with('error', 'Gagal memperbarui data: ' . $e->getMessage());
+        // }
     }
-}
 
     /**
      * Remove the specified resource from storage.

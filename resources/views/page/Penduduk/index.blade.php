@@ -34,23 +34,24 @@
                                         <td class="py-2 px-4 border-b">{{ $item->jenis_kelamin }}</td>
                                         <td class="py-2 px-4 border-b">{{ $item->alamat }}</td>
                                         <td class="px-6 py-4">
-                                            <!-- Tombol Edit -->
-                                            <button type="button" data-id="{{ $item->id }}"
-                                                data-nama="{{ $item->nama }}" data-modal-target="editModal"
-                                                data-nik="{{ $item->nik }}"
-                                                data-tanggal_lahir="{{ $item->tanggal_lahir }}"
-                                                data-jenis_kelamin="{{ $item->jenis_kelamin }}"
-                                                data-alamat="{{ $item->alamat }}"
-                                                onclick="editSourceModal(this)"
-                                                class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
-                                                Edit
-                                            </button>
-                                            <!-- Tombol Delete -->
-                                            <button
-                                                onclick="deleteEmployee({{ $item->id }}, '{{ $item->nama }}')"
-                                                class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded-md text-xs text-white ml-2">
-                                                Delete
-                                            </button>
+                                            @can('role-ADMIN')
+                                                <!-- Tombol Edit -->
+                                                <button type="button" data-id="{{ $item->id }}"
+                                                    data-nama="{{ $item->nama }}" data-modal-target="editModal"
+                                                    data-nik="{{ $item->nik }}"
+                                                    data-tanggal_lahir="{{ $item->tanggal_lahir }}"
+                                                    data-jenis_kelamin="{{ $item->jenis_kelamin }}"
+                                                    data-alamat="{{ $item->alamat }}" onclick="editSourceModal(this)"
+                                                    class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
+                                                    Edit
+                                                </button>
+                                                <!-- Tombol Delete -->
+                                                <button
+                                                    onclick="deleteEmployee({{ $item->id }}, '{{ $item->nama }}')"
+                                                    class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded-md text-xs text-white ml-2">
+                                                    Delete
+                                                </button>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach
@@ -121,7 +122,8 @@
                         <div class="p-4 space-y-6">
                             <!-- Nama -->
                             <div class="mb-5">
-                                <label for="edit_nama" class="block mb-2 text-sm font-medium text-gray-900">Nama</label>
+                                <label for="edit_nama"
+                                    class="block mb-2 text-sm font-medium text-gray-900">Nama</label>
                                 <input type="text" id="edit_nama" name="nama"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="Masukkan nama..." required>
@@ -135,14 +137,16 @@
                             </div>
                             <!-- Tanggal Lahir -->
                             <div class="mb-5">
-                                <label for="edit_tanggal_lahir" class="block mb-2 text-sm font-medium text-gray-900">Tanggal Lahir</label>
+                                <label for="edit_tanggal_lahir"
+                                    class="block mb-2 text-sm font-medium text-gray-900">Tanggal Lahir</label>
                                 <input type="date" id="edit_tanggal_lahir" name="tanggal_lahir"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     required>
                             </div>
                             <!-- Jenis Kelamin -->
                             <div class="mb-5">
-                                <label for="edit_jenis_kelamin" class="block mb-2 text-sm font-medium text-gray-900">Jenis Kelamin</label>
+                                <label for="edit_jenis_kelamin"
+                                    class="block mb-2 text-sm font-medium text-gray-900">Jenis Kelamin</label>
                                 <select id="edit_jenis_kelamin" name="jenis_kelamin"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     required>
@@ -152,7 +156,8 @@
                             </div>
                             <!-- Alamat -->
                             <div class="mb-5">
-                                <label for="edit_alamat" class="block mb-2 text-sm font-medium text-gray-900">Alamat</label>
+                                <label for="edit_alamat"
+                                    class="block mb-2 text-sm font-medium text-gray-900">Alamat</label>
                                 <textarea id="edit_alamat" name="alamat"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="Masukkan alamat..."></textarea>
@@ -207,7 +212,7 @@
                 if (tanya) {
                     try {
                         const response = await axios.post(`/Penduduk/${id}`, {
-                            '_method': 'DELEeeTE',
+                            '_method': 'DELETE',
                             '_token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                         });
                         if (response.status === 200) {

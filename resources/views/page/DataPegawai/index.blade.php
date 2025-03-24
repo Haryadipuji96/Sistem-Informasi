@@ -51,6 +51,7 @@
                                         <td class="py-2 px-4 border-b">{{ $employee->gender }}</td>
                                         <td class="py-2 px-4 border-b">{{ $employee->pendidikan }}</td>
                                         <td class="px-6 py-4">
+                                            @can('role-ADMIN')
                                             <!-- Tombol Edit -->
                                             <button type="button" data-id="{{ $employee->id }}"
                                                 data-name="{{ $employee->name }}" data-modal-target="sourceModal"
@@ -68,6 +69,7 @@
                                                 class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded-md text-xs text-white ml-2">
                                                 Delete
                                             </button>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach
@@ -108,6 +110,7 @@
             </div>
         </div>
     </div>
+
     <!-- Modal Edit -->
     <div class="fixed inset-0 flex items-center justify-center z-50 hidden" id="sourceModal">
         <div class="fixed inset-0 bg-black opacity-50"></div>
