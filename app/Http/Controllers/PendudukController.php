@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Penduduk;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 use function Illuminate\Log\log;
 
@@ -81,39 +82,41 @@ class PendudukController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request, string $id)
     {
-        // try {
-        // Validasi data yang dikirimkan
-        $validatedData = $request->validate([
-            'nama' => 'required|string|max:255',
-            'nik' => 'required|string|max:16|unique:penduduk,nik,' . $penduduk->id,
-            'tanggal_lahir' => 'required|date',
-            'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
-            'alamat' => 'nullable|string',
-        ]);
+        try {       
+            // Perbarui data penduduk
+            $data = [
+                'nama' => $request->input('nama'),
+                'nik' => $request->input('nik'),
+                'tanggal_lahir' => $request->input('tanggal_lahir'),
+                'jenis_kelamin' => $request->input('jenis_kelamin'),
+                'alamat' => $request->input('alamat'),
+            ];
 
-        // Perbarui data penduduk
-        Penduduk::update($validatedData);
-        // Redirect kelo halaman index dengan pesan sukses
-        // } catch (\Exception $e) {
-        //     // Tangkap error dan kembalikan pesan error
-        //     return redirect()->back()->with('error', 'Gagal memperbarui data: ' . $e->getMessage());
-        // }
+            $datas = penduduk::findOrFail($id);
+            $datas->update($data);
+            return redirect()
+            ->route('Penduduk.index')->with('message_insert', 'data Penduduk Berhasil diperbarui');
+        }   catch (\Exception $e) {
+            return redirect()
+            ->route('error.index')->with('error_message', 'terjadi kesalahan saat menambahkan data:' . $e->getMessage());
+          
     }
+}
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $id)
+    public function destroy(string $id)
     {
         try {
             $data = Penduduk::findOrFail($id);
             $data->delete();
-            return back()->with('message_delete', 'Data Customer Sudah dihapus');
+            return back()->with('message_delete', 'Data Penduduk Sudah dihapus');
         } catch (\Exception $e) {
-            echo "<script>console.error('PHP Error: " .
-                addslashes($e->getMessage()) . "');</script>";
+            // return back()->with('error_message', 'Terjadi kesalahan saat menghapus data:
+            // ' . $e->getMessage());
             return view('error.index');
         }
     }

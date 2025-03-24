@@ -19,10 +19,12 @@
                         class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded-md text-xs text-white">
                         Cari
                     </button>
-                    <div>
-                        <a href="{{ route('DataPegawai.create') }}" onclick="return functionAdd()"
-                            class="bg-sky-600 p-2 hover:bg-sky-400 text-white rounded-xl py-2">Add</a>
-                    </div>
+                    @can('role-A')
+                        <div>
+                            <a href="{{ route('DataPegawai.create') }}" onclick="return functionAdd()"
+                                class="bg-sky-600 p-2 hover:bg-sky-400 text-white rounded-xl py-2">Add</a>
+                        </div>
+                    @endcan
                 </form>
             </div>
             <!-- Tabel Data Pegawai -->
@@ -38,7 +40,7 @@
                                     <th class="py-2 px-4 border-b">Alamat</th>
                                     <th class="py-2 px-4 border-b">Gender</th>
                                     <th class="py-2 px-4 border-b">Pendidikan</th>
-                                    <th class="py-2 px-4 border-b text-center">Action</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,24 +53,24 @@
                                         <td class="py-2 px-4 border-b">{{ $employee->gender }}</td>
                                         <td class="py-2 px-4 border-b">{{ $employee->pendidikan }}</td>
                                         <td class="px-6 py-4">
-                                            @can('role-ADMIN')
-                                            <!-- Tombol Edit -->
-                                            <button type="button" data-id="{{ $employee->id }}"
-                                                data-name="{{ $employee->name }}" data-modal-target="sourceModal"
-                                                data-position="{{ $employee->position }}"
-                                                data-address="{{ $employee->address }}"
-                                                data-gender="{{ $employee->gender }}"
-                                                data-pendidikan="{{ $employee->pendidikan }}"
-                                                onclick="editSourceModal(this)"
-                                                class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
-                                                Edit
-                                            </button>
-                                            <!-- Tombol Delete -->
-                                            <button
-                                                onclick="deleteEmployee({{ $employee->id }}, '{{ $employee->name }}')"
-                                                class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded-md text-xs text-white ml-2">
-                                                Delete
-                                            </button>
+                                            @can('role-A')
+                                                <!-- Tombol Edit -->
+                                                <button type="button" data-id="{{ $employee->id }}"
+                                                    data-name="{{ $employee->name }}" data-modal-target="sourceModal"
+                                                    data-position="{{ $employee->position }}"
+                                                    data-address="{{ $employee->address }}"
+                                                    data-gender="{{ $employee->gender }}"
+                                                    data-pendidikan="{{ $employee->pendidikan }}"
+                                                    onclick="editSourceModal(this)"
+                                                    class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
+                                                    Edit
+                                                </button>
+                                                <!-- Tombol Delete -->
+                                                <button
+                                                    onclick="deleteEmployee({{ $employee->id }}, '{{ $employee->name }}')"
+                                                    class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded-md text-xs text-white ml-2">
+                                                    Delete
+                                                </button>
                                             @endcan
                                         </td>
                                     </tr>
@@ -263,9 +265,21 @@
 
         function createChart(type, labels, data, title) {
             const ctx = document.getElementById('myChart').getContext('2d');
+
+            // Jika chart sudah ada, hancurkan terlebih dahulu
             if (myChart) {
                 myChart.destroy(); // Hancurkan chart sebelumnya jika ada
             }
+
+            // Pastikan data ada sebelum membuat chart
+            if (labels.length === 0 || data.length === 0) {
+                // Jika data kosong, tampilkan chart kosong dengan pesan
+                document.getElementById('chartTitle').innerText = 'Tidak Ada Data Pegawai';
+            } else {
+                document.getElementById('chartTitle').innerText = title;
+            }
+
+            // Buat chart baru dengan data yang diperbarui
             myChart = new Chart(ctx, {
                 type: type,
                 data: {
@@ -290,12 +304,13 @@
 
         // Tampilkan chart default saat halaman dimuat
         window.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('myChart').getContext('2d');
+
             if (employees.length === 0) {
-                // Jika database kosong, tampilkan pesan
+                // Jika database kosong, tampilkan chart kosong
                 document.getElementById('chartTitle').innerText = 'Tidak Ada Data Pegawai';
-                const ctx = document.getElementById('myChart').getContext('2d');
                 if (myChart) {
-                    myChart.destroy();
+                    myChart.destroy(); // Hancurkan chart jika ada sebelumnya
                 }
                 myChart = new Chart(ctx, {
                     type: 'pie',
@@ -312,7 +327,7 @@
                     }
                 });
             } else {
-                // Jika database ada isi, tampilkan chart default
+                // Jika ada data pegawai, tampilkan chart
                 const genderData = {};
                 employees.forEach(employee => {
                     if (!genderData[employee.gender]) {
@@ -320,6 +335,7 @@
                     }
                     genderData[employee.gender]++;
                 });
+
                 const labels = Object.keys(genderData);
                 const data = Object.values(genderData);
                 createChart('pie', labels, data, 'Data Pegawai Berdasarkan Jenis Kelamin');

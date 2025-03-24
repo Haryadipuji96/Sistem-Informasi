@@ -4,9 +4,11 @@
         <div class="container mx-auto p-6">
             <div class="flex items-center justify-between mb-6">
                 <div>DATA UMKM</div>
+                @can('role-A')
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
                     Tambah UMKM
                 </button>
+                @endcan
             </div>
 
             <!-- Tabel Data UMKM -->
@@ -37,7 +39,7 @@
                                         <td class="py-2 px-4 border-b">{{ $umkm->jumlah_karyawan ?? '0' }}</td>
                                         <td class="py-2 px-4 border-b">Rp {{ number_format($umkm->modal, 0, ',', '.') }}</td>
                                         <td class="px-6 py-4">
-                                            @can('role-ADMIN')
+                                            
                                             <!-- Tombol Edit -->
                                             <button type="button" data-id="{{ $umkm->id }}"
                                                 data-nama_umkm="{{ $umkm->nama_umkm }}" data-modal-target="editModal"
@@ -56,7 +58,7 @@
                                                 class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded-md text-xs text-white ml-2">
                                                 Delete
                                             </button>
-                                            @endcan
+                                            
                                         </td>
                                     </tr>
                                 @endforeach

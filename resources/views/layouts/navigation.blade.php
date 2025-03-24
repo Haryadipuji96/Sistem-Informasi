@@ -17,7 +17,7 @@
                     </x-nav-link>
                 </div>
 
-               
+              
                 <div class="hidden sm:flex sm:items-center sm:ms-6">
                     <li class="relative list-none">
                         <x-dropdown>

@@ -2,12 +2,16 @@
     <div class="bg-white min-h-screen">
         <!-- Container untuk tabel -->
         <div class="container mx-auto p-6">
+            
             <div class="flex items-center justify-between mb-6">
                 <div>DATA PENDUDUK</div>
+                @can('role-A')
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
                     Tambah Data Penduduk
                 </button>
+                @endcan
             </div>
+            
             <!-- Tabel Data Penduduk -->
             <div class="flex items-center justify-center mb-5">
                 <div class="flex justify-center">
@@ -34,7 +38,7 @@
                                         <td class="py-2 px-4 border-b">{{ $item->jenis_kelamin }}</td>
                                         <td class="py-2 px-4 border-b">{{ $item->alamat }}</td>
                                         <td class="px-6 py-4">
-                                            @can('role-ADMIN')
+                                            @can('role-A')
                                                 <!-- Tombol Edit -->
                                                 <button type="button" data-id="{{ $item->id }}"
                                                     data-nama="{{ $item->nama }}" data-modal-target="editModal"
@@ -208,25 +212,29 @@
             }
             // Fungsi untuk menghapus data penduduk
             const deleteEmployee = async (id, nama) => {
-                let tanya = confirm(`Apakah Anda yakin ingin menghapus data penduduk "${nama}"?`);
-                if (tanya) {
-                    try {
-                        const response = await axios.post(`/Penduduk/${id}`, {
-                            '_method': 'DELETE',
-                            '_token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                        });
-                        if (response.status === 200) {
-                            alert('Data Penduduk berhasil dihapus');
-                            location.reload();
-                        } else {
-                            alert('Gagal menghapus Data Penduduk. Silakan coba lagi.');
-                        }
-                    } catch (error) {
-                        console.error(error);
-                        alert('Terjadi kesalahan saat menghapus Data Penduduk. Silakan cek konsol untuk detail.');
-                    }
+        let tanya = confirm(`Apakah anda yakin untuk menghapus Penduduk ${nama} ?`);
+        if (tanya) {
+            try {
+                const response = await axios.post(`/Penduduk/${id}`, {
+                    '_method': 'DELETE',
+                    '_token': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                        'content')
+                });
+
+                if (response.status === 200) {
+                    alert('Penduduk berhasil dihapus');
+                    location.reload();
+                } else {
+                    // alert('Gagal menghapus departemen. Silakan coba lagi.');
+                    location.windows('error.index');
                 }
-            };
+            } catch (error) {
+                console.error(error);
+                // alert('Terjadi kesalahan saat menghapus departemen. Silakan cek konsol untuk detail.');
+                location.windows('error.index');
+            }
+        }
+    };
         </script>
     </div>
 </x-app-layout>
