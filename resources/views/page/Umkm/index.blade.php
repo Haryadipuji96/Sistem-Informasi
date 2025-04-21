@@ -39,7 +39,7 @@
                                         <td class="py-2 px-4 border-b">{{ $umkm->jumlah_karyawan ?? '0' }}</td>
                                         <td class="py-2 px-4 border-b">Rp {{ number_format($umkm->modal, 0, ',', '.') }}</td>
                                         <td class="px-6 py-4">
-                                            
+                                            @can('role-A')
                                             <!-- Tombol Edit -->
                                             <button type="button" data-id="{{ $umkm->id }}"
                                                 data-nama_umkm="{{ $umkm->nama_umkm }}" data-modal-target="editModal"
@@ -58,7 +58,7 @@
                                                 class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded-md text-xs text-white ml-2">
                                                 Delete
                                             </button>
-                                            
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach

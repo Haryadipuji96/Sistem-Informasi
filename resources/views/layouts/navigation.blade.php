@@ -87,6 +87,9 @@
                                 <x-dropdown-link :href="route('berita.index')">
                                     {{ __('Berita Desa') }}
                                 </x-dropdown-link>
+                                <x-dropdown-link :href="route('events.index')">
+                                    {{ __('Event') }}
+                                </x-dropdown-link>
                                 <x-dropdown-link :href="route('Umkm.index')">
                                     {{ __('UMKM') }}
                                 </x-dropdown-link>
