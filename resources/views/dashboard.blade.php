@@ -1,5 +1,6 @@
 <x-app-layout>
     <div class="bg-white min-h-screen">
+        {{-- Carousel --}}
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
@@ -43,93 +44,129 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-    </div>
 
-    {{-- Halaman Berita --}}
-    <div class="container-fluid px-4 px-md-5">
-        <div class="text-start mb-5">
-            <h4 class="display-5 fw-bold">Berita Terkini</h4>
-            <div class="row row-cols-1 row-cols-md-4 g-4">
-                <div class="col">
-                    <a href="/halaman-berita-1" class="card-link">
-                        <div class="card h-100">
-                            <!-- Gambar -->
-                            <img src="{{ asset('image/kunjungan.jpg') }}" class="card-img-top img-fluid zoom-effect"
-                                alt="...">
-                            <!-- Konten teks -->
-                            <div class="card-body">
-                                <h5 class="card-title  font-bold">Desa Indrajaya mendapat kunjungan dari Bapa Sekretaris
-                                    Daerah
-                                    Kabupaten Tasikmalaya
-                                </h5>
-                                <p class="card-text"><small class="text-muted">17 Januari 2025</small></p>
-                            </div>
-                        </div>
-                    </a>
+        {{-- Section Sambutan Kepala Desa --}}
+        <section class="py-16 bg-gradient-to-r from-amber-50 to-amber-50">
+            <div class="max-w-5xl mx-auto text-center px-6">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">👨‍🌾 Sambutan Kepala Desa</h2>
+                <p class="text-gray-800 text-lg leading-relaxed">
+                    Assalamu'alaikum Warahmatullahi Wabarakatuh. <br><br>
+                    Selamat datang di Website Resmi Desa Indrajaya. Website ini kami hadirkan untuk memberikan kemudahan
+                    akses informasi kepada masyarakat dan mempererat komunikasi antara pemerintah desa dan warga. Semoga
+                    dapat bermanfaat dan menjadi sarana pembangunan desa yang lebih baik.
+                </p>
+                <div class="mt-8">
+                    <span class="inline-block text-gray-800 font-semibold">- Kepala Desa Indrajaya</span>
                 </div>
-                <div class="col">
-                    <a href="/halaman-berita-2" class="card-link">
-                        <div class="card h-100">
-                            <!-- Gambar -->
-                            <img src="{{ asset('image/Gerakan.jpg') }}" class="card-img-top img-fluid zoom-effect"
-                                alt="...">
-                            <!-- Konten teks -->
-                            <div class="card-body">
-                                <h5 class="card-title  font-bold">Gerakan Jum'at Bersih, Gotong Royong Masyarakat Desa
-                                    Indrajaya bersama Muspika Kecamatan sukaratu, pembukaan akses jalan baru yang
-                                    menghubungkan Kp. Palasari - Kp. Cicurug sawo</h5>
-                                <p class="card-text"><small class="text-muted">30 Agustus 2024</small></p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="/halaman-berita-3" class="card-link">
-                        <div class="card h-100">
-                            <!-- Gambar -->
-                            <img src="{{ asset('image/Berita.jpg') }}" class="card-img-top img-fluid zoom-effect"
-                                alt="...">
-                            <!-- Konten teks -->
-                            <div class="card-body">
-                                <h5 class="card-title font-bold">Kreasi Seni, Karnaval, dan Jampana dalam rangka HUT RI
-                                    Ke-79 Desa Indrajaya</h5>
+            </div>
+        </section>
 
-                                <p class="card-text"><small class="text-muted">17 Agustus 2024</small></p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="/halaman-berita-4" class="card-link">
-                        <div class="card h-100">
-                            <!-- Gambar -->
-                            <img src="{{ asset('image/Kunjungan2.jpg') }}" class="card-img-top img-fluid zoom-effect"
-                                alt="...">
-                            <!-- Konten teks -->
-                            <div class="card-body">
-                                <h5 class="card-title font-bold">Desa Indrajaya mendapat kunjungan dari dinas Parawisata
-                                    Kabupaten Tasikmalaya, guna meninjau Assessment Destinasi Wisata Desa Indrajaya</h5>
+        {{-- Section Tentang Desa --}}
+        <section class="py-20 bg-white">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    {{-- Gambar --}}
+                    <div class="overflow-hidden rounded-xl shadow-lg">
+                        <img src="{{ asset('image/balong.jpg') }}" alt="Tentang Desa"
+                            class="w-full h-80 object-cover hover:scale-105 transition-transform duration-300">
+                    </div>
 
-                                <p class="card-text"><small class="text-muted">26 Juni 2022</small></p>
-                            </div>
+                    {{-- Konten --}}
+                    <div>
+                        <h2 class="text-4xl font-bold text-gray-800 mb-6">🏡 Tentang Desa Indrajaya</h2>
+                        <p class="text-gray-700 text-lg mb-4 leading-relaxed">
+                            Desa Indrajaya terletak di Kecamatan Sukaratu, Kabupaten Tasikmalaya. Desa ini dikenal
+                            dengan keindahan alamnya, kekayaan budaya, dan semangat gotong royong warganya.
+                        </p>
+                        <p class="text-gray-700 text-lg leading-relaxed">
+                            Berbagai potensi desa seperti pertanian, kerajinan, serta wisata alam terus dikembangkan
+                            untuk kesejahteraan masyarakat. Mari bersama-sama membangun Desa Indrajaya menjadi desa yang
+                            maju, mandiri, dan berdaya saing.
+                        </p>
+                        <div class="mt-6">
+                            <a href="/TentangDesa"
+                                class="inline-block bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300">
+                                ✨ Lihat Profil Desa
+                            </a>
                         </div>
-                    </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {{-- Halaman Berita --}}
+        <div class="container-fluid px-4 px-md-5 py-10">
+            <div class="text-start mb-5">
+                <h4 class="display-5 fw-bold text-gray-800">📰 Berita Terkini</h4>
+                <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
+                    <div class="col">
+                        <a href="/halaman-berita-1" class="card-link">
+                            <div class="card h-100 shadow-md">
+                                <img src="{{ asset('image/kunjungan.jpg') }}" class="card-img-top img-fluid zoom-effect"
+                                    alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title font-bold">Desa Indrajaya mendapat kunjungan dari Bapa
+                                        Sekretaris Daerah Kabupaten Tasikmalaya</h5>
+                                    <p class="card-text"><small class="text-muted">17 Januari 2025</small></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="/halaman-berita-2" class="card-link">
+                            <div class="card h-100 shadow-md">
+                                <img src="{{ asset('image/Gerakan.jpg') }}" class="card-img-top img-fluid zoom-effect"
+                                    alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title font-bold">Gerakan Jum'at Bersih, Gotong Royong, pembukaan
+                                        akses jalan baru Kp. Palasari - Cicurug Sawo</h5>
+                                    <p class="card-text"><small class="text-muted">30 Agustus 2024</small></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="/halaman-berita-3" class="card-link">
+                            <div class="card h-100 shadow-md">
+                                <img src="{{ asset('image/Berita.jpg') }}" class="card-img-top img-fluid zoom-effect"
+                                    alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title font-bold">Karnaval dan Jampana HUT RI ke-79 Desa Indrajaya
+                                    </h5>
+                                    <p class="card-text"><small class="text-muted">17 Agustus 2024</small></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="/halaman-berita-4" class="card-link">
+                            <div class="card h-100 shadow-md">
+                                <img src="{{ asset('image/Kunjungan2.jpg') }}"
+                                    class="card-img-top img-fluid zoom-effect" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title font-bold">Kunjungan Dinas Pariwisata untuk Assessment
+                                        Destinasi Wisata Desa</h5>
+                                    <p class="card-text"><small class="text-muted">26 Juni 2022</small></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
+
+    {{-- CSS tambahan --}}
     <style>
         /* Efek Zoom pada Gambar */
         .zoom-effect {
             transition: transform 0.3s ease;
-            /* Animasi halus */
             overflow: hidden;
-            /* Memastikan gambar tidak melampaui batas kartu */
         }
 
         .zoom-effect:hover {
             transform: scale(1.1);
-            /* Membesarkan gambar sebesar 10% */
         }
     </style>
 </x-app-layout>

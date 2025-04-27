@@ -22,7 +22,7 @@
                     <h3 class="text-lg font-semibold mb-3 text-orange-500">Layanan Masyarakat</h3>
                     <ul class="space-y-2">
                         <li>
-                            <a href="/kritik-dan-saran" class="flex items-center hover:text-blue-700">
+                            <a href="/kritik-dan-saran" class="flex items-center hover:text-orange-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
                                     <path
@@ -32,7 +32,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/administrasi-penduduk" class="flex items-center hover:text-blue-700">
+                            <a href="/administrasi-penduduk" class="flex items-center hover:text-orange-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
                                     <path
@@ -42,7 +42,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="wisata-desa" class="flex items-center hover:text-blue-700">
+                            <a href="wisata-desa" class="flex items-center hover:text-orange-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
                                     <path
@@ -58,78 +58,106 @@
                     <h3 class="text-lg font-semibold mb-3 text-orange-500">Link Navigasi</h3>
                     <ul class="space-y-2">
                         <li>
-                            <a href="{{ url('/page.ProfileKepalaDesa.index') }}"class="flex items-center hover:text-blue-700">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
-                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                            <a href="{{ route('ProfileKepalaDesa.index') }}" class="flex items-center hover:text-orange-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
+                                    <path
+                                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
                                 </svg>
                                 Profile Kepala Desa
                             </a>
+                            
                         </li>
                         <li>
-                            <a href="/data-pegawai" class="flex items-center hover:text-blue-700">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
-                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                            <a href="{{ route('DataPegawai.index') }}" class="flex items-center hover:text-orange-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
+                                    <path
+                                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
                                 </svg>
-                                Data Pegawai
+                               Data Pegawai
                             </a>
+                            
                         </li>
                         <li>
-                            <a href="/apbdes" class="flex items-center hover:text-blue-700">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
-                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                            <a href="{{ route('apbdes.index') }}" class="flex items-center hover:text-orange-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
+                                    <path
+                                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
                                 </svg>
-                                APBDES
+                               APBDES
                             </a>
+                            
                         </li>
                         <li>
-                            <a href="/visi-misi" class="flex items-center hover:text-blue-700">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
-                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                            <a href="{{ route('VisiMisi.index') }}" class="flex items-center hover:text-orange-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
+                                    <path
+                                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
                                 </svg>
                                 Visi & Misi
                             </a>
+                            
                         </li>
                         <li>
-                            <a href="/umkm" class="flex items-center hover:text-blue-700">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
-                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                            <a href="{{ route('TentangDesa.index') }}" class="flex items-center hover:text-orange-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
+                                    <path
+                                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
                                 </svg>
                                 Tentang Desa
                             </a>
+                            
                         </li>
                         <li>
-                            <a href="/berita-desa" class="flex items-center hover:text-blue-700">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
-                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                            <a href="{{ route('dashboard') }}" class="flex items-center hover:text-orange-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
+                                    <path
+                                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
                                 </svg>
                                 Berita Desa
                             </a>
+                            
                         </li>
                         <li>
-                            <a href="/umkm" class="flex items-center hover:text-blue-700">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
-                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                            <a href="{{ route('Umkm.index') }}" class="flex items-center hover:text-orange-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
+                                    <path
+                                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
                                 </svg>
                                 UMKM
                             </a>
+                            
                         </li>
                         <li>
-                            <a href="/umkm" class="flex items-center hover:text-blue-700">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
-                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                            <a href="{{ route('agendas.index') }}" class="flex items-center hover:text-orange-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
+                                    <path
+                                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
                                 </svg>
                                 Agenda Desa
                             </a>
+                            
                         </li>
                         <li>
-                            <a href="/umkm" class="flex items-center hover:text-blue-700">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
-                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                            <a href="{{ route('GaleriDesa.index') }}" class="flex items-center hover:text-orange-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
+                                    <path
+                                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
                                 </svg>
                                 Galeri Desa
                             </a>
+                            
                         </li>
                     </ul>
+                    
                 </div>
                 <!-- Media Sosial -->
                 <div>
@@ -147,7 +175,7 @@
                         </li>
                         <!-- Instagram (SVG) -->
                         <li class="list-inline-item me-3">
-                            <a href="..." target="_blank" class="social-icon">
+                            <a href="https://www.instagram.com/puji_haryadi86/" target="_blank" class="social-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                     fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
                                     <path

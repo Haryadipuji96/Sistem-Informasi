@@ -1,35 +1,35 @@
 <x-app-layout>
-    <div class="max-w-4xl mx-auto mt-10 p-8 bg-white shadow-lg rounded-lg">
-        <h1 class="text-2xl font-bold text-gray-800 mb-6">
+    <div class="max-w-4xl mx-auto mt-10 p-8 bg-white shadow-xl rounded-lg">
+        <h1 class="text-2xl font-semibold text-gray-800 mb-6">
             📝 Pendaftaran Tim - {{ $event->title }}
         </h1>
 
-        <form action="{{ route('events.update', $event->id) }}" method="POST" class="space-y-6">
+        <form action="{{ route('events.update', $event->id) }}" method="POST" class="space-y-8">
             @csrf
             @method('PATCH')
 
             <!-- Nama Kampung -->
             <div>
-                <label for="village_name" class="block font-medium text-gray-700 mb-1">Nama Kampung</label>
+                <label for="village_name" class="block font-medium text-gray-700 mb-2">Nama Kampung</label>
                 <input type="text" id="village_name" name="village_name"
-                       class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500"
-                       required>
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-orange-500"
+                       placeholder="Masukkan Nama Kampung" required>
             </div>
 
             <!-- Nama Tim -->
             <div>
-                <label for="team_name" class="block font-medium text-gray-700 mb-1">Nama Tim</label>
+                <label for="team_name" class="block font-medium text-gray-700 mb-2">Nama Tim</label>
                 <input type="text" id="team_name" name="team_name"
-                       class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500"
-                       required>
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-orange-500"
+                       placeholder="Masukkan Nama Tim" required>
             </div>
 
             <!-- Kontak Person -->
             <div>
-                <label for="contact_person" class="block font-medium text-gray-700 mb-1">Kontak Person</label>
+                <label for="contact_person" class="block font-medium text-gray-700 mb-2">Kontak Person</label>
                 <input type="text" id="contact_person" name="contact_person"
-                       class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500"
-                       required>
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-orange-500"
+                       placeholder="Masukkan Kontak Person" required>
             </div>
 
             <!-- Anggota Tim -->
@@ -40,14 +40,14 @@
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Nama Anggota</label>
                             <input type="text" name="members[0][name]"
-                                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500"
-                                   required>
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-orange-500"
+                                   placeholder="Nama Anggota" required>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Usia</label>
                             <input type="number" name="members[0][age]"
-                                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500"
-                                   required>
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-orange-500"
+                                   placeholder="Usia Anggota" required>
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
             <!-- Tombol Tambah Anggota -->
             <div>
                 <button type="button" onclick="addMember()"
-                        class="bg-amber-500 hover:bg-amber-600 text-white font-semibold px-4 py-2 rounded-lg transition">
+                        class="bg-sky-500 hover:bg-sky-600 text-white font-semibold px-5 py-3 rounded-lg shadow-md transition">
                     ➕ Tambah Anggota
                 </button>
             </div>
@@ -64,7 +64,7 @@
             <!-- Tombol Submit -->
             <div>
                 <button type="submit"
-                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-200">
+                        class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg shadow-md transition duration-200">
                     ✅ Daftar Tim
                 </button>
             </div>
@@ -82,14 +82,14 @@
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Nama Anggota</label>
                     <input type="text" name="members[${memberCount}][name]"
-                           class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500"
-                           required>
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-orange-500"
+                           placeholder="Nama Anggota" required>
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Usia</label>
                     <input type="number" name="members[${memberCount}][age]"
-                           class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500"
-                           required>
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-orange-500"
+                           placeholder="Usia Anggota" required>
                 </div>
             `;
             membersDiv.appendChild(newMember);

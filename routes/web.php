@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DataPegawaiController;
 use App\Http\Controllers\EventController;
@@ -16,6 +17,8 @@ use App\Http\Controllers\UmkmController;
 use App\Http\Controllers\VisiMisiController;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Controller\ErrorController;
+use App\Http\Controllers\ApbdesController;
+use App\Http\Controllers\ApbdesReportController;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -55,7 +58,20 @@ Route::resource('events', EventController::class);
 Route::get('/teamsMembers/{event}', [EventController::class, 'teams'])->name('events.teamsMembers');
 Route::get('/teams/{team}', [TeamController::class, 'show'])->name('teams.show');
 
+Route::get('/apbdes', [ApbdesController::class, 'index'])->name('apbdes.index');
+Route::get('/apbdes/create', [ApbdesController::class, 'create'])->name('apbdes.create');
+Route::post('/apbdes', [ApbdesController::class, 'store'])->name('apbdes.store');
+Route::get('/apbdes/{id}/edit', [ApbdesController::class, 'edit'])->name('apbdes.edit');
+Route::put('/apbdes/{id}', [ApbdesController::class, 'update'])->name('apbdes.update');
+Route::delete('/apbdes/{id}', [ApbdesController::class, 'destroy'])->name('apbdes.destroy');
 
+Route::resource('agendas', AgendaController::class);
+
+Route::prefix('laporan')->group(function () {
+    Route::get('index', [ApbdesReportController::class, 'index'])->name('laporan.index');
+    Route::get('create', [ApbdesReportController::class, 'create'])->name('laporan.create');
+    Route::post('store', [ApbdesReportController::class, 'store'])->name('laporan.store');
+});
 
 
 
