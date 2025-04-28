@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="max-w-3xl mx-auto px-6 py-12 bg-white shadow-lg rounded-xl">
-        <h1 class="text-3xl font-bold mb-8 text-indigo-700 text-center flex items-center justify-center gap-2">
+        <h1 class="text-3xl font-bold mb-8 text-gray-800 text-center flex items-center justify-center gap-2">
             📝 Tambah Laporan APBDES
         </h1>
 
@@ -51,7 +51,7 @@
 
             <div class="text-right">
                 <button type="submit"
-                    class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-2 rounded-lg transition duration-200">
+                    class="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-2 rounded-lg transition duration-200">
                     💾 Simpan Laporan
                 </button>
             </div>

@@ -56,7 +56,7 @@
                     dapat bermanfaat dan menjadi sarana pembangunan desa yang lebih baik.
                 </p>
                 <div class="mt-8">
-                    <span class="inline-block text-gray-800 font-semibold">- Kepala Desa Indrajaya</span>
+                    <span class="inline-block text-gray-800 font-semibold">- Yudi Sutiana</span>
                 </div>
             </div>
         </section>

@@ -17,12 +17,13 @@ class EventController extends Controller
     }
 
     // Menampilkan detail event
-    public function show(String $id)
+    public function show($id)
     {
-        $events = Event::where('id', $id)->first();
-        return view('page.events.show')->with(
-            ['events' => $events]
-        );  // Tampilkan detail event
+        // Ambil event berdasarkan ID
+        $events = Event::findOrFail($id);
+    
+        // Kirim data ke view
+        return view('page.events.show', compact('events'));
     }
 
     public function create()
@@ -61,7 +62,7 @@ class EventController extends Controller
             'contact_person' => 'required|string',
             'members' => 'required|array',
             'members.*.name' => 'required|string',
-            'members.*.age' => 'required|integer',
+            'members.*.birth_date' => 'required|date',  // Ganti age dengan birth_date dan validasi sebagai date
         ]);
 
         // Simpan data pendaftaran tim
@@ -72,12 +73,12 @@ class EventController extends Controller
             'contact_person' => $validated['contact_person'],
         ]);
 
-        // Simpan anggota tim
+        // Simpan anggota tim dengan birth_date
         foreach ($validated['members'] as $member) {
             TeamMember::create([
                 'team_registration_id' => $teamRegistration->id,
                 'name' => $member['name'],
-                'age' => $member['age'],
+                'birth_date' => $member['birth_date'],  // Simpan tanggal lahir, bukan usia
             ]);
         }
 

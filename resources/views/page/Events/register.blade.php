@@ -44,10 +44,10 @@
                                    placeholder="Nama Anggota" required>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Usia</label>
-                            <input type="number" name="members[0][age]"
+                            <label class="block text-sm font-medium text-gray-700">Tanggal Lahir</label>
+                            <input type="date" name="members[0][birth_date]"
                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-orange-500"
-                                   placeholder="Usia Anggota" required>
+                                   required>
                         </div>
                     </div>
                 </div>
@@ -86,10 +86,10 @@
                            placeholder="Nama Anggota" required>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700">Usia</label>
-                    <input type="number" name="members[${memberCount}][age]"
+                    <label class="block text-sm font-medium text-gray-700">Tanggal Lahir</label>
+                    <input type="date" name="members[${memberCount}][birth_date]"
                            class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-orange-500"
-                           placeholder="Usia Anggota" required>
+                           required>
                 </div>
             `;
             membersDiv.appendChild(newMember);

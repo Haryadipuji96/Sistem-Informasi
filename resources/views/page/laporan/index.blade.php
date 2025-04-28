@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="max-w-6xl mx-auto px-4 py-10">
+    <div class="max-w-6xl mx-auto px-4 py-10" id="laporan-area">
         <h1 class="text-3xl font-bold mb-6 text-gray-800 text-center">📊 Laporan Keuangan APBDES</h1>
 
         {{-- Notifikasi --}}
@@ -15,19 +15,28 @@
             <select name="tahun" id="tahun" onchange="this.form.submit()" class="border rounded px-3 py-1 text-sm">
                 <option value="">Semua</option>
                 @foreach ($allYears as $year)
-                    <option value="{{ $year }}" {{ $tahun == $year ? 'selected' : '' }}>{{ $year }}</option>
+                    <option value="{{ $year }}" {{ $tahun == $year ? 'selected' : '' }}>{{ $year }}
+                    </option>
                 @endforeach
             </select>
         </form>
 
         {{-- Tombol Aksi --}}
-        <div class="mb-6 flex justify-between">
-            <a href="{{ route('laporan.create') }}" class="bg-sky-500 text-white px-4 py-2 rounded hover:bg-sky-600 transition">
+        <div class="mb-6 flex flex-wrap gap-2 justify-between">
+            <a href="{{ route('laporan.create') }}"
+                class="bg-sky-500 text-white px-4 py-2 rounded hover:bg-sky-600 transition">
                 ➕ Tambah Laporan Baru
             </a>
-            <button onclick="window.print()" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition">
-                🖨️ Cetak Laporan
-            </button>
+            <div class="flex gap-2">
+                <button onclick="printLaporan()"
+                    class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition">
+                    🖨️ Cetak Laporan
+                </button>
+                <button onclick="downloadPDF()"
+                    class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
+                    📄 Download PDF
+                </button>
+            </div>
         </div>
 
         {{-- Grafik --}}
@@ -61,9 +70,13 @@
         </div>
     </div>
 
-    {{-- Chart.js --}}
+    {{-- Script Chart.js --}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {{-- Script html2pdf --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
     <script>
+        // Chart.js setup
         const ctx = document.getElementById('apbdesChart').getContext('2d');
         const apbdesChart = new Chart(ctx, {
             type: 'bar',
@@ -78,14 +91,16 @@
                         '#F59E0B', // Kuning Terang
                         '#EC4899', // Merah Jambu
                         '#F97316', // Oranye Terang
-                        '#8B5CF6'  // Ungu Muda
+                        '#8B5CF6' // Ungu Muda
                     ],
                     borderRadius: 6
                 }]
             },
             options: {
                 plugins: {
-                    legend: { display: false },
+                    legend: {
+                        display: false
+                    },
                     tooltip: {
                         callbacks: {
                             label: context => 'Rp ' + context.formattedValue
@@ -101,5 +116,78 @@
                 }
             }
         });
+
+        // Fungsi untuk Cetak Laporan
+        function printLaporan() {
+            var laporanArea = document.getElementById('laporan-area').cloneNode(true);
+            var canvas = document.getElementById('apbdesChart');
+            var imgData = canvas.toDataURL("image/png");
+
+            // Ganti canvas dengan gambar
+            var newImg = document.createElement("img");
+            newImg.src = imgData;
+            newImg.className = canvas.className;
+            laporanArea.querySelector('canvas').replaceWith(newImg);
+
+            // Buka jendela baru untuk print
+            var printWindow = window.open('', '', 'height=1000, width=800');
+            printWindow.document.write('<html><head><title>Cetak Laporan</title>');
+            printWindow.document.write(
+                '<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">');
+            printWindow.document.write('</head><body class="p-6">');
+            printWindow.document.write(laporanArea.innerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.focus();
+            setTimeout(() => {
+                printWindow.print();
+                printWindow.close();
+            }, 500); // Tunggu sedikit agar gambar ter-load
+        }
+
+        // Fungsi untuk Download PDF
+        function downloadPDF() {
+            const laporanArea = document.getElementById('laporan-area');
+
+            // Clone seluruh area
+            const cloneArea = laporanArea.cloneNode(true);
+
+            // Tangkap canvas chart
+            const canvas = laporanArea.querySelector('canvas');
+            const imgData = canvas.toDataURL('image/png');
+
+            // Ganti canvas di clone dengan gambar
+            const newImg = document.createElement('img');
+            newImg.src = imgData;
+            newImg.style.width = canvas.style.width;
+            newImg.style.height = canvas.style.height;
+            newImg.className = canvas.className;
+
+            // Replace canvas with image
+            const canvasInClone = cloneArea.querySelector('canvas');
+            if (canvasInClone) {
+                canvasInClone.parentNode.replaceChild(newImg, canvasInClone);
+            }
+
+            // Pastikan semua element di clone lengkap (termasuk tabel)
+            var opt = {
+                margin: 0.5,
+                filename: 'laporan-apbdes.pdf',
+                image: {
+                    type: 'jpeg',
+                    quality: 0.98
+                },
+                html2canvas: {
+                    scale: 2
+                },
+                jsPDF: {
+                    unit: 'in',
+                    format: 'a4',
+                    orientation: 'portrait'
+                }
+            };
+
+            html2pdf().set(opt).from(cloneArea).save();
+        }
     </script>
 </x-app-layout>

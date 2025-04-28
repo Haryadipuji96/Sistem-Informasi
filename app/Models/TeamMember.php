@@ -10,7 +10,7 @@ class TeamMember extends Model
     use HasFactory;
 
     protected $fillable = [
-        'team_registration_id', 'name', 'age'
+        'team_registration_id', 'name', 'birth_date'
     ];
 
     // Relasi: TeamMember milik satu TeamRegistration

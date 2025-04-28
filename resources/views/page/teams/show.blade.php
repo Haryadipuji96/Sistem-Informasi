@@ -13,7 +13,7 @@
             <ul class="list-disc pl-6 space-y-2 text-gray-700">
                 @foreach ($teams as $member)
                     <li class="text-sm">
-                        {{ $member->name }} ({{ $member->age }} tahun)
+                        {{ $member->name }} ({{ $member->birth_date }})
                     </li>
                 @endforeach
             </ul>
