@@ -22,13 +22,13 @@
                     <h3 class="text-lg font-semibold mb-3 text-orange-500">Layanan Masyarakat</h3>
                     <ul class="space-y-2">
                         <li>
-                            <a href="/kritik-dan-saran" class="flex items-center hover:text-orange-600">
+                            <a href="{{ route('kritik-saran.create') }}" class="flex items-center hover:text-orange-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
                                     <path
                                         d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
                                 </svg>
-                                Kritik Dan Saran
+                               Kritik Dan Saran
                             </a>
                         </li>
                         <li>

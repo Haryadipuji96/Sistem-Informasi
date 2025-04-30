@@ -1,4 +1,19 @@
 <x-app-layout>
+    @if (session('success'))
+        <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 4000)"
+            class="fixed top-8 right-8 transform transition-all duration-500 ease-in-out 
+            bg-green-600 text-white px-8 py-4 rounded-lg shadow-xl z-50 
+            ring-2 ring-green-400 ring-opacity-50">
+            <div class="flex items-center space-x-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-lg font-semibold">{{ session('success') }}</span>
+            </div>
+        </div>
+    @endif
+
     <div class="bg-white min-h-screen">
         {{-- Carousel --}}
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">

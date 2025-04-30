@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Controller\ErrorController;
 use App\Http\Controllers\ApbdesController;
 use App\Http\Controllers\ApbdesReportController;
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\KritikSaranController;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -58,21 +60,28 @@ Route::resource('events', EventController::class);
 Route::get('/teamsMembers/{event}', [EventController::class, 'teams'])->name('events.teamsMembers');
 Route::get('/teams/{team}', [TeamController::class, 'show'])->name('teams.show');
 
+// Route Untuk Page Data ApBDES
 Route::get('/apbdes', [ApbdesController::class, 'index'])->name('apbdes.index');
 Route::get('/apbdes/create', [ApbdesController::class, 'create'])->name('apbdes.create');
 Route::post('/apbdes', [ApbdesController::class, 'store'])->name('apbdes.store');
 Route::get('/apbdes/{id}/edit', [ApbdesController::class, 'edit'])->name('apbdes.edit');
 Route::put('/apbdes/{id}', [ApbdesController::class, 'update'])->name('apbdes.update');
 Route::delete('/apbdes/{id}', [ApbdesController::class, 'destroy'])->name('apbdes.destroy');
-
+// Route Untuk Page agendas
 Route::resource('agendas', AgendaController::class);
-
+// Route Untuk Page Laporan
 Route::prefix('laporan')->group(function () {
     Route::get('index', [ApbdesReportController::class, 'index'])->name('laporan.index');
     Route::get('create', [ApbdesReportController::class, 'create'])->name('laporan.create');
     Route::post('store', [ApbdesReportController::class, 'store'])->name('laporan.store');
 });
 
+// Route Page Kritik Dan Saran
+Route::get('/kritik-saran', [KritikSaranController::class, 'create'])->name('kritik-saran.create');
+Route::post('/kritik-saran', [KritikSaranController::class, 'store'])->name('kritik-saran.store');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 
 Route::middleware('auth')->group(function () {
@@ -89,6 +98,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('Umkm', UmkmController::class)->middleware('auth');
     Route::resource('Penduduk', PendudukController::class)->middleware('auth');
 
+//    Route kritik dan saran khusus admin
+Route::middleware('can:role-A')->group(function () {
+    Route::get('/admin/kritik-saran', [KritikSaranController::class, 'index'])->name('admin.kritik-saran.index');
+});
     // Tampilkan form tambah event
     // Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
     // Simpan event baru
