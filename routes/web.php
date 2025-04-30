@@ -83,6 +83,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+// Rute untuk halaman detail berita
+// Menampilkan detail berita dengan format halaman-berita-{id}
+Route::get('/berita/{slug}', [BeritaController::class, 'show'])->name('berita.show');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

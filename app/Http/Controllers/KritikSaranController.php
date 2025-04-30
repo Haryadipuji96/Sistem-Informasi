@@ -17,7 +17,8 @@ class KritikSaranController extends Controller
 
     public function create()
     {
-        return view('page.kritik-saran.create');
+        $kritikSaran = KritikSaran::all();
+        return view('page.kritik-saran.admin.index', compact('kritikSaran'));
     }
 
     public function store(Request $request)

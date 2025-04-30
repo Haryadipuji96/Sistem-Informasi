@@ -4,23 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\Berita;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class BeritaController extends Controller
 {
-    // Menampilkan semua berita
     public function index()
     {
-        $berita = Berita ::latest()->get();
-        return view('berita.index', compact('berita'));
+        // Ambil 4 berita terbaru
+        $berita = Berita::latest()->take(4)->get();
+    
+        // Kirim data ke view 'dashboard'
+        return view('dashboard', compact('berita'));
     }
 
-    // Menampilkan formulir tambah berita
+    // Menampilkan form buat berita baru
     public function create()
     {
-        return view('berita.create');
+        return view('page.berita.create');
     }
 
-    // Simpan berita baru
+    // Menyimpan berita baru
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -28,21 +32,26 @@ class BeritaController extends Controller
             'content' => 'required|string',
         ]);
 
+        $validated['slug'] = Str::slug($validated['title']); // generate slug dari title
+
         Berita::create($validated);
 
         return redirect()->route('berita.index')->with('success', 'Berita berhasil disimpan!');
     }
 
-    // Tampilkan detail berita
-    public function show(Berita $berita)
+
+    // Menampilkan detail berita
+    public function show($slug)
     {
-        return view('berita.show', compact('berita'));
+        $berita = Berita::where('slug', $slug)->firstOrFail();
+        return view('page.berita.show', compact('berita'));
     }
 
-    // Menampilkan formulir edit berita
+
+    // Menampilkan form edit berita
     public function edit(Berita $berita)
     {
-        return view('berita.edit', compact('berita'));
+        return view('page.berita.edit', compact('berita'));
     }
 
     // Update berita
@@ -53,10 +62,13 @@ class BeritaController extends Controller
             'content' => 'required|string',
         ]);
 
+        $validated['slug'] = Str::slug($validated['title']); // generate ulang slug jika title berubah
+
         $berita->update($validated);
 
         return redirect()->route('berita.index')->with('success', 'Berita berhasil diperbarui!');
     }
+
 
     // Hapus berita
     public function destroy(Berita $berita)

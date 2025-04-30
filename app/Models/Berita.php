@@ -9,10 +9,7 @@ class Berita extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-       'id',
-       'title',
-       'content',
-    ];
-   
+    protected $table = 'berita'; // Nama tabel (kalau beda dengan default plural)
+
+    protected $fillable = ['title', 'slug', 'content'];
 }

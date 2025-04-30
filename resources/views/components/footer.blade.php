@@ -1,10 +1,19 @@
 <div class="flex flex-col">
+    <!-- Tombol Scroll to Top -->
+    <button id="scrollTopBtn"
+        class="fixed bottom-10 right-5 z-50 p-3 rounded-full bg-orange-500 text-white shadow-lg hover:bg-orange-600 transition opacity-0 transform translate-y-10">
+        ↑
+    </button>
+
+
+
     <!-- Footer Atas -->
     <div class="bg-black text-white py-10 relative overflow-hidden">
         <!-- Gambar Latar Belakang -->
-        {{-- <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20" style="background-image: src('image/gambar.jpg');">
-            <img src="{{ asset('image/balong.jpg') }}">
-        </div> --}}
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+            style="background-image: url('{{ asset('image/balong.jpg') }}');">
+        </div>
+
 
         <!-- Konten Footer -->
         <div class="container mx-auto px-6 relative z-10">
@@ -22,13 +31,14 @@
                     <h3 class="text-lg font-semibold mb-3 text-orange-500">Layanan Masyarakat</h3>
                     <ul class="space-y-2">
                         <li>
-                            <a href="{{ route('kritik-saran.create') }}" class="flex items-center hover:text-orange-600">
+                            <a href="{{ route('kritik-saran.create') }}"
+                                class="flex items-center hover:text-orange-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
                                     <path
                                         d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
                                 </svg>
-                               Kritik Dan Saran
+                                Kritik Dan Saran
                             </a>
                         </li>
                         <li>
@@ -58,7 +68,8 @@
                     <h3 class="text-lg font-semibold mb-3 text-orange-500">Link Navigasi</h3>
                     <ul class="space-y-2">
                         <li>
-                            <a href="{{ route('ProfileKepalaDesa.index') }}" class="flex items-center hover:text-orange-600">
+                            <a href="{{ route('ProfileKepalaDesa.index') }}"
+                                class="flex items-center hover:text-orange-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
                                     <path
@@ -66,7 +77,7 @@
                                 </svg>
                                 Profile Kepala Desa
                             </a>
-                            
+
                         </li>
                         <li>
                             <a href="{{ route('DataPegawai.index') }}" class="flex items-center hover:text-orange-600">
@@ -75,9 +86,9 @@
                                     <path
                                         d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
                                 </svg>
-                               Data Pegawai
+                                Data Pegawai
                             </a>
-                            
+
                         </li>
                         <li>
                             <a href="{{ route('apbdes.index') }}" class="flex items-center hover:text-orange-600">
@@ -86,9 +97,9 @@
                                     <path
                                         d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
                                 </svg>
-                               APBDES
+                                APBDES
                             </a>
-                            
+
                         </li>
                         <li>
                             <a href="{{ route('VisiMisi.index') }}" class="flex items-center hover:text-orange-600">
@@ -99,7 +110,7 @@
                                 </svg>
                                 Visi & Misi
                             </a>
-                            
+
                         </li>
                         <li>
                             <a href="{{ route('TentangDesa.index') }}" class="flex items-center hover:text-orange-600">
@@ -110,7 +121,7 @@
                                 </svg>
                                 Tentang Desa
                             </a>
-                            
+
                         </li>
                         <li>
                             <a href="{{ route('dashboard') }}" class="flex items-center hover:text-orange-600">
@@ -121,7 +132,7 @@
                                 </svg>
                                 Berita Desa
                             </a>
-                            
+
                         </li>
                         <li>
                             <a href="{{ route('Umkm.index') }}" class="flex items-center hover:text-orange-600">
@@ -132,7 +143,7 @@
                                 </svg>
                                 UMKM
                             </a>
-                            
+
                         </li>
                         <li>
                             <a href="{{ route('agendas.index') }}" class="flex items-center hover:text-orange-600">
@@ -143,10 +154,11 @@
                                 </svg>
                                 Agenda Desa
                             </a>
-                            
+
                         </li>
                         <li>
-                            <a href="{{ route('GaleriDesa.index') }}" class="flex items-center hover:text-orange-600">
+                            <a href="{{ route('GaleriDesa.index') }}"
+                                class="flex items-center hover:text-orange-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
                                     <path
@@ -154,10 +166,10 @@
                                 </svg>
                                 Galeri Desa
                             </a>
-                            
+
                         </li>
                     </ul>
-                    
+
                 </div>
                 <!-- Media Sosial -->
                 <div>
@@ -211,7 +223,7 @@
 </div>
 
 <!-- Footer Bawah -->
-<footer class="bg-orange-500 text-white text-center p-4 mt-0">
+<footer class="bg-slate-800 text-white text-center p-4 mt-0">
     <p>&copy; 2025 Pemerintahan Desa Indrajaya. Kec.Sukaratu, Kab.Tasikmalaya.</p>
-</footer>
+</footer>  
 </div>

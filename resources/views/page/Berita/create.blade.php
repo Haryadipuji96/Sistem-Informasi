@@ -1,17 +1,21 @@
+<x-app-layout>
+<div class="container mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">Tambah Berita Baru</h1>
 
-<div class="container">
-    <h1>Tambah Berita Baru</h1>
-    <form action="{{ route('berita.store') }}" method="POST">
+    <form action="{{ route('berita.store') }}" method="POST" class="space-y-4">
         @csrf
-        <div class="mb-3">
-            <label for="title" class="form-label">Judul Berita</label>
-            <input type="text" name="title" id="title" class="form-control" required>
+
+        <div>
+            <label class="block text-sm font-medium">Judul</label>
+            <input type="text" name="title" class="w-full border rounded p-2" required>
         </div>
-        <div class="mb-3">
-            <label for="content" class="form-label">Isi Berita</label>
-            <textarea name="content" id="content" rows="5" class="form-control" required></textarea>
+
+        <div>
+            <label class="block text-sm font-medium">Isi Berita</label>
+            <textarea name="content" class="w-full border rounded p-2" rows="6" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Simpan</button>
-        <a href="{{ route('berita.index') }}" class="btn btn-secondary">Kembali</a>
+
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Simpan</button>
     </form>
 </div>
+</x-app-layout>

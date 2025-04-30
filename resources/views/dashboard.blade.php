@@ -114,19 +114,22 @@
             <div class="text-start mb-5">
                 <h4 class="display-5 fw-bold text-gray-800">📰 Berita Terkini</h4>
                 <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
+                    @foreach($berita as $item)
                     <div class="col">
-                        <a href="/halaman-berita-1" class="card-link">
-                            <div class="card h-100 shadow-md">
-                                <img src="{{ asset('image/kunjungan.jpg') }}" class="card-img-top img-fluid zoom-effect"
-                                    alt="...">
+                        <a href="{{ route('berita.show', $item->id) }}" class="card-link">
+                            <div class="card h-100 shadow-md hover:shadow-lg transition duration-300">
+                                <img src="{{ asset('storage/' . ($item->image ?? 'image/kunjungan.jpg')) }}" 
+                                    class="card-img-top img-fluid zoom-effect" alt="{{ $item->title }}">
                                 <div class="card-body">
-                                    <h5 class="card-title font-bold">Desa Indrajaya mendapat kunjungan dari Bapa
-                                        Sekretaris Daerah Kabupaten Tasikmalaya</h5>
-                                    <p class="card-text"><small class="text-muted">17 Januari 2025</small></p>
+                                    <h5 class="card-title font-bold">{{ $item->title }}</h5>
+                                    <p class="card-text">
+                                        <small class="text-muted">{{ $item->created_at->format('d F Y') }}</small>
+                                    </p>
                                 </div>
                             </div>
                         </a>
                     </div>
+                    @endforeach
                     <div class="col">
                         <a href="/halaman-berita-2" class="card-link">
                             <div class="card h-100 shadow-md">

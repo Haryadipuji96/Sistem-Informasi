@@ -64,7 +64,7 @@
     <script src="//unpkg.com/alpinejs" defer></script>
 
 
-    
+
 
 
 
@@ -109,6 +109,10 @@
             font-size: 14px !important;
             border-radius: 0px 10px 0px 10px;
         }
+
+        #scrollTopBtn {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
     </style>
 
 </head>
@@ -144,11 +148,32 @@
     @stack('scripts')
     <x-footer />
 
+    <script>
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.remove('opacity-0', 'translate-y-10'); // Muncul dengan animasi
+                scrollTopBtn.classList.add('opacity-100', 'translate-y-0');
+            } else {
+                scrollTopBtn.classList.remove('opacity-100', 'translate-y-0');
+                scrollTopBtn.classList.add('opacity-0', 'translate-y-10'); // Menyembunyikan dengan animasi
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
 </body>
 
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-      AOS.init();
-    </script>
+<script>
+    AOS.init();
+</script>
 
 </html>

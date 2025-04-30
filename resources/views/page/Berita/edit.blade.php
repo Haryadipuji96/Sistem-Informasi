@@ -1,18 +1,22 @@
+<x-app-layout>
+<div class="container mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">Edit Berita</h1>
 
-<div class="container">
-    <h1>Edit Berita</h1>
-    <form action="{{ route('berita.update', $berita) }}" method="POST">
+    <form action="{{ route('berita.update', $berita->id) }}" method="POST" class="space-y-4">
         @csrf
         @method('PUT')
-        <div class="mb-3">
-            <label for="title" class="form-label">Judul Berita</label>
-            <input type="text" name="title" id="title" class="form-control" value="{{ $berita->title }}" required>
+
+        <div>
+            <label class="block text-sm font-medium">Judul</label>
+            <input type="text" name="title" value="{{ old('title', $berita->title) }}" class="w-full border rounded p-2" required>
         </div>
-        <div class="mb-3">
-            <label for="content" class="form-label">Isi Berita</label>
-            <textarea name="content" id="content" rows="5" class="form-control" required>{{ $berita->content }}</textarea>
+
+        <div>
+            <label class="block text-sm font-medium">Isi Berita</label>
+            <textarea name="content" class="w-full border rounded p-2" rows="6" required>{{ old('content', $berita->content) }}</textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Perbarui</button>
-        <a href="{{ route('berita.index') }}" class="btn btn-secondary">Kembali</a>
+
+        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Update</button>
     </form>
 </div>
+</x-app-layout>
