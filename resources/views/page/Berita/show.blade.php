@@ -1,13 +1,11 @@
+
 <x-app-layout>
-<div class="container mx-auto p-4">
-    <div class="mb-4">
-        <a href="{{ route('berita.index') }}" class="text-blue-600 hover:underline">&larr; Kembali ke Berita</a>
+    <div class="bg-white shadow p-6 rounded-lg">
+        <h1 class="text-2xl font-bold mb-4">{{ $berita->title }}</h1>
+        {{-- <p class="text-gray-500 text-sm mb-4">{{ $berita->created_at->format('d F Y') }}</p> --}}
+        <div class="prose max-w-none">
+            {!! nl2br(e($berita->content)) !!}
+        </div>
     </div>
-
-    <h1 class="text-3xl font-bold mb-4">{{ $berita->title }}</h1>
-
-    <div class="text-gray-700 leading-relaxed">
-        {!! nl2br(e($berita->content)) !!}
-    </div>
-</div>
-</x-app-layout>
+    </x-app-layout>
+    

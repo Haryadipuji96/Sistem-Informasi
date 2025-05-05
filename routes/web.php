@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Controller\ErrorController;
 use App\Http\Controllers\ApbdesController;
 use App\Http\Controllers\ApbdesReportController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\KritikSaranController;
 
@@ -85,7 +86,11 @@ Route::get('/dashboard', function () {
 
 // Rute untuk halaman detail berita
 // Menampilkan detail berita dengan format halaman-berita-{id}
-Route::get('/berita/{slug}', [BeritaController::class, 'show'])->name('berita.show');
+// Route manual berita dengan URL spesifik
+Route::get('/halaman-berita-{id}', [BeritaController::class, 'show'])->name('halaman.berita');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 
 
 

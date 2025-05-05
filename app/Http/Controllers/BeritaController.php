@@ -13,9 +13,9 @@ class BeritaController extends Controller
     {
         // Ambil 4 berita terbaru
         $berita = Berita::latest()->take(4)->get();
-    
+
         // Kirim data ke view 'dashboard'
-        return view('dashboard', compact('berita'));
+        return view('page.berita.index', compact('berita'));
     }
 
     // Menampilkan form buat berita baru
@@ -30,22 +30,29 @@ class BeritaController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $validated['slug'] = Str::slug($validated['title']); // generate slug dari title
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('berita', 'public');
+        }
 
         Berita::create($validated);
 
-        return redirect()->route('berita.index')->with('success', 'Berita berhasil disimpan!');
+        return redirect()->route('page.berita.index')->with('success', 'Berita berhasil disimpan!');
     }
 
 
     // Menampilkan detail berita
-    public function show($slug)
+    public function show($id)
     {
-        $berita = Berita::where('slug', $slug)->firstOrFail();
-        return view('page.berita.show', compact('berita'));
+        $berita = Berita::where('id',$id)->first();
+        return view('page.berita.show')->with([
+            'berita' => $berita
+        ]);
     }
+
+
 
 
     // Menampilkan form edit berita

@@ -27,7 +27,7 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="{{ asset('image/gambar.jpg') }}" class="d-block w-100">
+                    <img src="{{ asset('image/Gambar17.jpg') }}" class="d-block w-100">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>First slide label</h5>
                         <p>Some representative placeholder content for the first slide.</p>
@@ -113,66 +113,27 @@
         <div class="container-fluid px-4 px-md-5 py-10">
             <div class="text-start mb-5">
                 <h4 class="display-5 fw-bold text-gray-800">📰 Berita Terkini</h4>
+
                 <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
-                    @foreach($berita as $item)
-                    <div class="col">
-                        <a href="{{ route('berita.show', $item->id) }}" class="card-link">
-                            <div class="card h-100 shadow-md hover:shadow-lg transition duration-300">
-                                <img src="{{ asset('storage/' . ($item->image ?? 'image/kunjungan.jpg')) }}" 
-                                    class="card-img-top img-fluid zoom-effect" alt="{{ $item->title }}">
-                                <div class="card-body">
-                                    <h5 class="card-title font-bold">{{ $item->title }}</h5>
-                                    <p class="card-text">
-                                        <small class="text-muted">{{ $item->created_at->format('d F Y') }}</small>
-                                    </p>
+                    @foreach ($berita as $b)
+                        <div class="col">
+                            <a href="{{ route('berita.show', $b->id) }}" class="card-link">
+                                <div class="card h-100 shadow-md hover:shadow-lg transition duration-300">
+                                    <img src="{{ asset('image/kunjungan.jpg') }}"
+                                        class="card-img-top img-fluid zoom-effect" alt="Berita 1">
+                                    <div class="card-body">
+                                        <h5 class="card-title font-bold">{{ $b->title }}</h5>
+                                        <p class="card-text">
+                                            <small class="text-muted">17 Januari 2025</small>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
                     @endforeach
-                    <div class="col">
-                        <a href="/halaman-berita-2" class="card-link">
-                            <div class="card h-100 shadow-md">
-                                <img src="{{ asset('image/Gerakan.jpg') }}" class="card-img-top img-fluid zoom-effect"
-                                    alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title font-bold">Gerakan Jum'at Bersih, Gotong Royong, pembukaan
-                                        akses jalan baru Kp. Palasari - Cicurug Sawo</h5>
-                                    <p class="card-text"><small class="text-muted">30 Agustus 2024</small></p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="/halaman-berita-3" class="card-link">
-                            <div class="card h-100 shadow-md">
-                                <img src="{{ asset('image/Berita.jpg') }}" class="card-img-top img-fluid zoom-effect"
-                                    alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title font-bold">Karnaval dan Jampana HUT RI ke-79 Desa Indrajaya
-                                    </h5>
-                                    <p class="card-text"><small class="text-muted">17 Agustus 2024</small></p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="/halaman-berita-4" class="card-link">
-                            <div class="card h-100 shadow-md">
-                                <img src="{{ asset('image/Kunjungan2.jpg') }}"
-                                    class="card-img-top img-fluid zoom-effect" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title font-bold">Kunjungan Dinas Pariwisata untuk Assessment
-                                        Destinasi Wisata Desa</h5>
-                                    <p class="card-text"><small class="text-muted">26 Juni 2022</small></p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 
     {{-- CSS tambahan --}}
