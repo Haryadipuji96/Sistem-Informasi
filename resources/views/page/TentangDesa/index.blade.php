@@ -6,7 +6,7 @@
     </x-slot>
     <div class="container mx-auto px-4 py-8">
         <!-- Hero Section with Image and Title -->
-        <div class="relative h-72 sm:h-96 overflow-hidden rounded-lg shadow-lg">
+        <div class="relative h-72 sm:h-96 overflow-hidden rounded-lg shadow-lg" data-aos="fade-up" data-aos-duration="1200">
             <img src="{{ asset('image/kebun.jpg') }}" alt="Desa Indrajaya" class="w-full h-full object-cover">
             <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
                 <div class="text-center">
@@ -21,7 +21,7 @@
         </div>
 
         <!-- Content Section -->
-        <div class="mt-10 w-full px-4 ml-4 sm:ml-6">
+        <div class="mt-10 w-full px-4 ml-4 sm:ml-6" data-aos="fade-up" data-aos-duration="1200">
             <h3 class="text-xl sm:text-2xl font-semibold mb-4 text-start sm:text-left">
                 TENTANG DESA INDRAJAYA
             </h3>
@@ -39,7 +39,7 @@
             </p>
         </div>
 
-        <div class="mt-10 w-full px-4 ml-4 sm:ml-6">
+        <div class="mt-10 w-full px-4 ml-4 sm:ml-6" data-aos="fade-up" data-aos-duration="1200">
             <h3 class="text-xl sm:text-2xl font-semibold mb-4 text-start sm:text-left">
                 KONDISI GEOGRAFIS
             </h3>
@@ -51,7 +51,7 @@
             </p>
 
             <!-- Daftar Penggunaan Lahan -->
-            <div class="mb-6">
+            <div class="mb-6" data-aos="fade-up" data-aos-duration="1200">
                 <h4 class="text-lg font-semibold text-gray-800 mb-2">Penggunaan Lahan:</h4>
                 <ul class="list-disc list-inside text-gray-700 text-sm sm:text-base">
                     <li>Tanah Pemukiman: 95 Ha.</li>
@@ -61,9 +61,8 @@
             </div>
 
             <!-- Deskripsi Geografis -->
-            <div>
-                <h4 class="text-lg font-semibold text-gray-800 mb-2">Dan secara Geografis Desa Indrajaya berada di :
-                </h4>
+            <div data-aos="fade-up" data-aos-duration="1200">
+                <h4 class="text-lg font-semibold text-gray-800 mb-2">Dan secara Geografis Desa Indrajaya berada di :</h4>
                 <dl class="space-y-2 text-gray-700 text-sm sm:text-base">
                     <div>
                         <dt class="font-medium text-gray-900 inline">Ketinggian dari permukaan laut:</dt>
@@ -84,7 +83,7 @@
                 </dl>
             </div>
         </div>
-        <div class="mt-10 w-full px-4 ml-4 sm:ml-6">
+        <div class="mt-10 w-full px-4 ml-4 sm:ml-6" data-aos="fade-up" data-aos-duration="1200">
             <h3 class="text-xl sm:text-2xl font-semibold mb-4 text-start sm:text-left">
                 ADMINISTRASI DESA INDRAJAYA
             </h3>
@@ -96,7 +95,7 @@
             </p>
 
             <!-- Daftar Batas Wilayah -->
-            <div class="mb-6">
+            <div class="mb-6" data-aos="fade-up" data-aos-duration="1200">
                 <h4 class="text-lg font-semibold text-gray-800 mb-2">Batas Wilayah:</h4>
                 <ul class="list-disc list-inside text-gray-700 text-sm sm:text-base space-y-1">
                     <li><strong>Sebelah Utara:</strong> Desa Cisayong, Kecamatan Cisayong</li>
@@ -107,7 +106,7 @@
             </div>
 
             <!-- Informasi Jarak Tempuh -->
-            <div class="mb-6">
+            <div class="mb-6" data-aos="fade-up" data-aos-duration="1200">
                 <h4 class="text-lg font-semibold text-gray-800 mb-2">Letak Wilayah:</h4>
                 <p class="text-gray-700 leading-relaxed text-sm sm:text-base mb-4" style="text-align: justify;">
                     Letak wilayah Desa Indrajaya dari Ibu Kota Kecamatan berada di sebelah timur laut. Berikut adalah
@@ -126,7 +125,7 @@
             </div>
 
             <!-- Informasi Tambahan -->
-            <div>
+            <div data-aos="fade-up" data-aos-duration="1200">
                 <p class="text-gray-700 leading-relaxed text-sm sm:text-base" style="text-align: justify;">
                     Untuk informasi lebih lanjut mengenai letak geografis dan luas wilayah Desa Indrajaya, dapat dilihat
                     pada gambar 1 (Peta Administrasi Desa Indrajaya) dan tabel 1.1 (Luas Wilayah serta Jumlah RW dan RT
@@ -138,10 +137,10 @@
 
     {{-- Peta Desa --}}
     <div class="container mx-auto px-4 py-8">
-        <h1 class="text-2xl font-bold text-center mb-6">Peta Desa Indrajaya</h1>
+        <h1 class="text-2xl font-bold text-center mb-6" data-aos="fade-up" data-aos-duration="1200">Peta Desa Indrajaya</h1>
 
         <!-- Container untuk peta -->
-        <div id="map" class="w-full sm:max-w-[600px] md:max-w-[800px] h-[300px] sm:h-[400px] mx-auto rounded-lg shadow-md"></div>
+        <div id="map" class="w-full sm:max-w-[600px] md:max-w-[800px] h-[300px] sm:h-[400px] mx-auto rounded-lg shadow-md" data-aos="fade-up" data-aos-duration="1200"></div>
     </div>
 
     <script>

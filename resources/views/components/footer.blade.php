@@ -177,7 +177,7 @@
                     <ul class="social-links list-inline list-unstyled d-flex">
                         <!-- Facebook (SVG) -->
                         <li class="list-inline-item me-3">
-                            <a href="..." target="_blank" class="social-icon">
+                            <a href="https://web.facebook.com/profile.php?id=100064935960355" target="_blank" class="social-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                     fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
                                     <path
@@ -187,7 +187,7 @@
                         </li>
                         <!-- Instagram (SVG) -->
                         <li class="list-inline-item me-3">
-                            <a href="https://www.instagram.com/puji_haryadi86/" target="_blank" class="social-icon">
+                            <a href="https://www.instagram.com/desaindrajaya/" target="_blank" class="social-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                     fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
                                     <path
@@ -197,7 +197,7 @@
                         </li>
                         <!-- YouTube (SVG) -->
                         <li class="list-inline-item me-3">
-                            <a href="..." target="_blank" class="social-icon">
+                            <a href="https://www.youtube.com/@pemdesindrajaya6662" target="_blank" class="social-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                     fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
                                     <path

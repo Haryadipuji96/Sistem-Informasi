@@ -16,7 +16,8 @@
 
     <div class="bg-white min-h-screen">
         {{-- Carousel --}}
-        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-aos="fade-up"
+            data-aos-duration="1200">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
                     aria-current="true" aria-label="Slide 1"></button>
@@ -29,22 +30,26 @@
                 <div class="carousel-item active">
                     <img src="{{ asset('image/Gambar17.jpg') }}" class="d-block w-100">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Some representative placeholder content for the first slide.</p>
+                        <h5 data-aos="fade-left" data-aos-duration="1000">Desa Indrajaya</h5>
+                        <p data-aos="fade-right" data-aos-duration="1000">Keindahan Alam dan Tradisi yang Menyatu,
+                            Tempat Kedamaian dan Kebudayaan yang Tak Tergantikan.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="{{ asset('image/balong.jpg') }}" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>Second slide label</h5>
-                        <p>Some representative placeholder content for the second slide.</p>
+                        <h5 data-aos="fade-left" data-aos-duration="1000">Keindahan Alam Desa</h5>
+                        <p data-aos="fade-right" data-aos-duration="1000">Menjelajahi pesawahan yang subur dan aliran
+                            sungai yang jernih, serta menikmati udara sejuk khas kaki Gunung Galunggung.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="{{ asset('image/kebun.jpg') }}" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>Third slide label</h5>
-                        <p>Some representative placeholder content for the third slide.</p>
+                        <h5 data-aos="fade-right" data-aos-duration="1000">Tradisi dan Budaya Desa</h5>
+                        <p data-aos="fade-left" data-aos-duration="1000">Melestarikan adat istiadat dan tradisi leluhur
+                            dalam kehidupan bermasyarakat, dengan peralatan tradisional seperti anyaman bambu dan cara
+                            bercocok tanam yang diwariskan turun-temurun.</p>
                     </div>
                 </div>
             </div>
@@ -61,7 +66,7 @@
         </div>
 
         {{-- Section Sambutan Kepala Desa --}}
-        <section class="py-16 bg-gradient-to-r from-amber-50 to-amber-50">
+        <section class="py-16 bg-gradient-to-r from-amber-50 to-amber-50" data-aos="fade-up" data-aos-duration="1200">
             <div class="max-w-5xl mx-auto text-center px-6">
                 <h2 class="text-4xl font-bold text-gray-800 mb-4">👨‍🌾 Sambutan Kepala Desa</h2>
                 <p class="text-gray-800 text-lg leading-relaxed">
@@ -77,7 +82,7 @@
         </section>
 
         {{-- Section Tentang Desa --}}
-        <section class="py-20 bg-white">
+        <section class="py-20 bg-white" data-aos="fade-up" data-aos-duration="1500">
             <div class="max-w-6xl mx-auto px-6">
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     {{-- Gambar --}}
@@ -110,7 +115,7 @@
         </section>
 
         {{-- Halaman Berita --}}
-        <div class="container-fluid px-4 px-md-5 py-10">
+        <div class="container-fluid px-4 px-md-5 py-10" data-aos="fade-up" data-aos-duration="1800">
             <div class="text-start mb-5">
                 <h4 class="display-5 fw-bold text-gray-800">📰 Berita Terkini</h4>
 
@@ -122,7 +127,8 @@
                                     {{-- Gambar Berita --}}
                                     @if ($b->image)
                                         <img src="{{ asset('image/' . $b->image) }}"
-                                            class="card-img-top img-fluid zoom-effect" alt="Berita {{ $b->title }}">
+                                            class="card-img-top img-fluid zoom-effect"
+                                            alt="Berita {{ $b->title }}">
                                     @else
                                         <img src="{{ asset('image/default-image.jpg') }}"
                                             class="card-img-top img-fluid zoom-effect" alt="Berita Default">
