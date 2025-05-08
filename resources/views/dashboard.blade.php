@@ -119,16 +119,30 @@
                         <div class="col">
                             <a href="{{ route('berita.show', $b->id) }}" class="card-link">
                                 <div class="card h-100 shadow-md hover:shadow-lg transition duration-300">
-                                    <img src="{{ asset('image/kunjungan.jpg') }}"
-                                        class="card-img-top img-fluid zoom-effect" alt="Berita 1">
+                                    {{-- Gambar Berita --}}
+                                    @if ($b->image)
+                                        <img src="{{ asset('image/' . $b->image) }}"
+                                            class="card-img-top img-fluid zoom-effect" alt="Berita {{ $b->title }}">
+                                    @else
+                                        <img src="{{ asset('image/default-image.jpg') }}"
+                                            class="card-img-top img-fluid zoom-effect" alt="Berita Default">
+                                    @endif
                                     <div class="card-body">
                                         <h5 class="card-title font-bold">{{ $b->title }}</h5>
                                         <p class="card-text">
-                                            <small class="text-muted">17 Januari 2025</small>
+                                            {{-- Menambahkan pengecekan apakah created_at ada --}}
+                                            <small class="text-muted">
+                                                @if ($b->created_at)
+                                                    {{ $b->created_at->format('d F Y') }}
+                                                @else
+                                                    Tanggal tidak tersedia
+                                                @endif
+                                            </small>
                                         </p>
                                     </div>
                                 </div>
                             </a>
+
                         </div>
                     @endforeach
                 </div>
