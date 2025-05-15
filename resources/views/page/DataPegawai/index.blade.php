@@ -2,7 +2,7 @@
     <div class="bg-white min-h-screen">
         <!-- Container untuk tabel -->
         <div class="container mx-auto p-6">
-            <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center justify-between mb-6 font-semibold text-xl">
                 <div>DATA NAMA PEGAWAI</div>
             </div>
             <!-- Form Pencarian -->
@@ -28,8 +28,8 @@
                 </form>
             </div>
             <!-- Tabel Data Pegawai -->
-            <div class="flex items-center justify-center mb-5">
-                <div class="flex justify-center">
+            <div class="overflow-x-auto">
+                <div class="w-full table-auto border border-gray-300 rounded-lg">
                     <div class="p-12" style="width:100%; overflow-x:auto;">
                         <table class="min-w-full bg-white border border-gray-300">
                             <thead>

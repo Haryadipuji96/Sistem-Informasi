@@ -23,10 +23,12 @@
 
         {{-- Tombol Aksi --}}
         <div class="mb-6 flex flex-wrap gap-2 justify-between">
+            @can('role-A')
             <a href="{{ route('laporan.create') }}"
                 class="bg-sky-500 text-white px-4 py-2 rounded hover:bg-sky-600 transition">
                 ➕ Tambah Laporan Baru
             </a>
+            @endcan
             <div class="flex gap-2">
                 <button onclick="printLaporan()"
                     class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition">

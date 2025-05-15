@@ -3,7 +3,7 @@
         <!-- Container untuk tabel -->
         <div class="container mx-auto p-6">
             
-            <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center justify-between mb-6 font-semibold text-xl">
                 <div>DATA PENDUDUK</div>
                 @can('role-A')
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
@@ -13,8 +13,8 @@
             </div>
             
             <!-- Tabel Data Penduduk -->
-            <div class="flex items-center justify-center mb-5">
-                <div class="flex justify-center">
+             <div class="overflow-x-auto">
+                <div class="w-full table-auto border border-gray-300 rounded-lg">
                     <div class="p-12" style="width:100%; overflow-x:auto;">
                         <table class="min-w-full bg-white border border-gray-300">
                             <thead>
