@@ -11,5 +11,5 @@ class Berita extends Model
 
     protected $table = 'berita'; // Nama tabel (kalau beda dengan default plural)
 
-    protected $fillable = ['title', 'slug', 'content'];
+    protected $fillable = ['title', 'tgl_berita', 'content'];
 }

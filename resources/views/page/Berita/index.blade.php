@@ -5,12 +5,12 @@
     @foreach($berita as $b)
         <div class="mb-6 border-b pb-4">
             <h2 class="text-xl font-semibold">
-                <a href="{{ route('berita.show', $item->slug) }}" class="text-blue-600 hover:underline">
-                    {{ $item->title }}
+                <a href="{{ route('berita.show', $b->id) }}" class="text-blue-600 hover:underline">
+                    {{ $b->title }}
                 </a>                
             </h2>
             <p class="text-gray-600 mt-2">
-                {{ \Illuminate\Support\Str::limit($item->content, 150) }}
+                {{ \Illuminate\Support\Str::limit($b->content, 150) }}
             </p>
         </div>
     @endforeach

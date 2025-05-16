@@ -31,7 +31,8 @@ require __DIR__ . '/auth.php';
 
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return redirect()->route('dashboard');
 });
 
 Route::resource('error', ErrorController::class);
@@ -42,9 +43,7 @@ Route::get('/dashboard', function () {
 
 Route::get('TentangDesa', [MapController::class, 'show'])->name('page.TentangDesa.index');
 
-Route::middleware(['auth'])->group(function () {
-    Route::resource('berita', BeritaController::class);
-});
+
 
 
 // Halaman daftar event
@@ -62,12 +61,7 @@ Route::get('/teamsMembers/{event}', [EventController::class, 'teams'])->name('ev
 Route::get('/teams/{team}', [TeamController::class, 'show'])->name('teams.show');
 
 // Route Untuk Page Data ApBDES
-Route::get('/apbdes', [ApbdesController::class, 'index'])->name('apbdes.index');
-Route::get('/apbdes/create', [ApbdesController::class, 'create'])->name('apbdes.create');
-Route::post('/apbdes', [ApbdesController::class, 'store'])->name('apbdes.store');
-Route::get('/apbdes/{id}/edit', [ApbdesController::class, 'edit'])->name('apbdes.edit');
-Route::put('/apbdes/{id}', [ApbdesController::class, 'update'])->name('apbdes.update');
-Route::delete('/apbdes/{id}', [ApbdesController::class, 'destroy'])->name('apbdes.destroy');
+
 // Route Untuk Page agendas
 Route::resource('agendas', AgendaController::class);
 // Route Untuk Page Laporan
@@ -90,7 +84,13 @@ Route::get('/dashboard', function () {
 Route::get('/halaman-berita-{id}', [BeritaController::class, 'show'])->name('halaman.berita');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
+Route::resource('VisiMisi', VisiMisiController::class);
+Route::resource('TentangDesa', TentangDesaController::class);
+Route::resource('GaleriDesa', GaleriDesaController::class);
+Route::resource('Umkm', UmkmController::class);
+Route::resource('Penduduk', PendudukController::class);
+Route::resource('ProfileKepalaDesa', ProfileKepalaDesaController::class);
+Route::resource('berita', BeritaController::class);
 
 
 
@@ -98,20 +98,25 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::resource('ProfileKepalaDesa', ProfileKepalaDesaController::class)->middleware('auth');
+
     Route::resource('StukturOrganisasi', StukturOrganisasiController::class)->middleware('auth');
     Route::resource('DataPegawai', DataPegawaiController::class)->middleware('auth');
-    Route::resource('VisiMisi', VisiMisiController::class)->middleware('auth');
-    Route::resource('kontak', KontakController::class)->middleware('auth');
-    Route::resource('TentangDesa', TentangDesaController::class)->middleware('auth');
-    Route::resource('GaleriDesa', GaleriDesaController::class)->middleware('auth');
-    Route::resource('Umkm', UmkmController::class)->middleware('auth');
-    Route::resource('Penduduk', PendudukController::class)->middleware('auth');
 
-//    Route kritik dan saran khusus admin
-Route::middleware('can:role-A')->group(function () {
-    Route::get('/admin/kritik-saran', [KritikSaranController::class, 'index'])->name('admin.kritik-saran.index');
-});
+    Route::resource('kontak', KontakController::class)->middleware('auth');
+
+    Route::get('/apbdes', [ApbdesController::class, 'index'])->name('apbdes.index');
+    Route::get('/apbdes/create', [ApbdesController::class, 'create'])->name('apbdes.create');
+    Route::post('/apbdes', [ApbdesController::class, 'store'])->name('apbdes.store');
+    Route::get('/apbdes/{id}/edit', [ApbdesController::class, 'edit'])->name('apbdes.edit');
+    Route::put('/apbdes/{id}', [ApbdesController::class, 'update'])->name('apbdes.update');
+    Route::delete('/apbdes/{id}', [ApbdesController::class, 'destroy'])->name('apbdes.destroy');
+
+
+
+    //    Route kritik dan saran khusus admin
+    Route::middleware('can:role-A')->group(function () {
+        Route::get('/admin/kritik-saran', [KritikSaranController::class, 'index'])->name('admin.kritik-saran.index');
+    });
     // Tampilkan form tambah event
     // Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
     // Simpan event baru

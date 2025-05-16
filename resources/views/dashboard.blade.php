@@ -69,7 +69,7 @@
         <section class="py-16 bg-gradient-to-r from-amber-50 to-amber-50" data-aos="fade-up" data-aos-duration="1200">
             <div class="max-w-5xl mx-auto text-center px-6">
                 <h2 class="text-4xl font-bold text-gray-800 mb-4">👨‍🌾 Sambutan Kepala Desa</h2>
-                <p class="text-gray-800 text-lg leading-relaxed">
+              <p class="text-gray-800 text-lg leading-relaxed">
                     Assalamu'alaikum Warahmatullahi Wabarakatuh. <br><br>
                     Selamat datang di Website Resmi Desa Indrajaya. Website ini kami hadirkan untuk memberikan kemudahan
                     akses informasi kepada masyarakat dan mempererat komunikasi antara pemerintah desa dan warga. Semoga
@@ -138,8 +138,8 @@
                                         <p class="card-text">
                                             {{-- Menambahkan pengecekan apakah created_at ada --}}
                                             <small class="text-muted">
-                                                @if ($b->created_at)
-                                                    {{ $b->created_at->format('d F Y') }}
+                                                @if ($b->tgl_berita)
+                                                    {{ date('d-m-Y H:i', strtotime($b->tgl_berita)) }} WIB
                                                 @else
                                                     Tanggal tidak tersedia
                                                 @endif

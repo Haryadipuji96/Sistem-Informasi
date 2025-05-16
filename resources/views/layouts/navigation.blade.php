@@ -31,11 +31,15 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('ProfileKepalaDesa.index')">Profile Kepala Desa</x-dropdown-link>
-                            <x-dropdown-link :href="route('DataPegawai.index')">Data Pegawai</x-dropdown-link>
-                            <x-dropdown-link :href="route('Penduduk.index')">Data Penduduk</x-dropdown-link>
-                            <x-dropdown-link :href="route('apbdes.index')">APBDES</x-dropdown-link>
-                            <x-dropdown-link :href="route('VisiMisi.index')">Visi Misi</x-dropdown-link>
+                            @cannot('role-A')
+                                <x-dropdown-link :href="route('ProfileKepalaDesa.index')">Profile Kepala Desa</x-dropdown-link>
+                                <x-dropdown-link :href="route('VisiMisi.index')">Visi Misi</x-dropdown-link>
+                            @endcannot
+                            @can('role-A')
+                                <x-dropdown-link :href="route('DataPegawai.index')">Data Pegawai</x-dropdown-link>
+                                <x-dropdown-link :href="route('Penduduk.index')">Data Penduduk</x-dropdown-link>
+                                <x-dropdown-link :href="route('apbdes.index')">APBDES</x-dropdown-link>
+                            @endcan
                         </x-slot>
                     </x-dropdown>
 
@@ -69,32 +73,34 @@
             </div>
 
             <!-- Right Side (User) -->
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
-                <x-dropdown align="right" width="48">
-                    <x-slot name="trigger">
-                        <button class="flex items-center text-sm font-medium text-white">
-                            {{ Auth::user()->name }}
-                            <svg class="ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                    </x-slot>
+            @can('role-A')
+                <div class="hidden sm:flex sm:items-center sm:ms-6">
+                    <x-dropdown align="right" width="48">
+                        <x-slot name="trigger">
+                            <button class="flex items-center text-sm font-medium text-white">
+                                {{ Auth::user()->name }}
+                                <svg class="ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                        </x-slot>
 
-                    <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">Profile</x-dropdown-link>
+                        <x-slot name="content">
+                            <x-dropdown-link :href="route('profile.edit')">Profile</x-dropdown-link>
 
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <x-dropdown-link :href="route('logout')"
-                                onclick="event.preventDefault(); this.closest('form').submit();">
-                                Log Out
-                            </x-dropdown-link>
-                        </form>
-                    </x-slot>
-                </x-dropdown>
-            </div>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault(); this.closest('form').submit();">
+                                    Log Out
+                                </x-dropdown-link>
+                            </form>
+                        </x-slot>
+                    </x-dropdown>
+                </div>
+            @endcan
 
             <!-- Mobile Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
@@ -141,11 +147,13 @@
 
         <!-- Mobile User -->
         <div class="pt-4 pb-1 border-t border-white">
-            <div class="px-4">
-                <div class="font-medium text-base text-white">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-white">{{ Auth::user()->email }}</div>
-            </div>
 
+            @can('role-A')
+                <div class="px-4">
+                    <div class="font-medium text-base text-white">{{ Auth::user()->name }}</div>
+                    <div class="font-medium text-sm text-white">{{ Auth::user()->email }}</div>
+                </div>
+            @endcan
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
                     Profile
