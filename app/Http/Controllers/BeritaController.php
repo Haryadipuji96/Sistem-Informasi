@@ -15,13 +15,13 @@ class BeritaController extends Controller
         $berita = Berita::latest()->take(4)->get();
 
         // Kirim data ke view 'dashboard'
-        return view('page.berita.index', compact('berita'));
+        return view('page.Berita.index', compact('berita'));
     }
 
     // Menampilkan form buat berita baru
     public function create()
     {
-        return view('page.berita.create');
+        return view('page.Berita.create');
     }
 
     // Menyimpan berita baru
@@ -39,7 +39,7 @@ class BeritaController extends Controller
 
         Berita::create($validated);
 
-        return redirect()->route('page.berita.index')->with('success', 'Berita berhasil disimpan!');
+        return redirect()->route('page.Berita.index')->with('success', 'Berita berhasil disimpan!');
     }
 
 
@@ -47,7 +47,7 @@ class BeritaController extends Controller
     public function show($id)
     {
         $berita = Berita::where('id',$id)->first();
-        return view('page.berita.show')->with([
+        return view('page.Berita.show')->with([
             'berita' => $berita
         ]);
     }
@@ -58,7 +58,7 @@ class BeritaController extends Controller
     // Menampilkan form edit berita
     public function edit(Berita $berita)
     {
-        return view('page.berita.edit', compact('berita'));
+        return view('page.Berita.edit', compact('berita'));
     }
 
     // Update berita

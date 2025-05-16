@@ -10,5 +10,5 @@ class ApbdesReport extends Model
     use HasFactory;
 
     protected $table = 'apbdes_reports'; // Nama tabel
-    protected $fillable = ['kategori', 'uraian', 'jumlah', 'tahun']; // Kolom yang bisa diisi
+    protected $fillable = ['kategori', 'keterangan', 'jumlah', 'tahun']; // Kolom yang bisa diisi
 }

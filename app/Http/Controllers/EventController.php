@@ -13,7 +13,7 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all();  // Ambil semua event
-        return view('page.events.index', compact('events'));  // Tampilkan ke view
+        return view('page.Events.index', compact('events'));  // Tampilkan ke view
     }
 
     // Menampilkan detail event
@@ -23,12 +23,12 @@ class EventController extends Controller
         $events = Event::findOrFail($id);
     
         // Kirim data ke view
-        return view('page.events.show', compact('events'));
+        return view('page.Events.show', compact('events'));
     }
 
     public function create()
     {
-        return view('page.events.create');
+        return view('page.Events.create');
     }
 
     public function store(Request $request)
@@ -41,14 +41,14 @@ class EventController extends Controller
 
         Event::create($validated);
 
-        return redirect()->route('events.index')->with('success', 'Event berhasil ditambahkan!');
+        return redirect()->route('Events.index')->with('success', 'Event berhasil ditambahkan!');
     }
 
     // Menampilkan form pendaftaran tim
     public function edit(String $id)
     {
         $event = Event::where('id', $id)->first();
-        return view('page.events.register')->with(
+        return view('page.Events.register')->with(
             ['event' => $event]
         );  // Tampilkan detail event
     }
@@ -82,7 +82,7 @@ class EventController extends Controller
             ]);
         }
 
-        return redirect()->route('events.show', $id);  // Redirect ke halaman event
+        return redirect()->route('Events.show', $id);  // Redirect ke halaman event
     }
 
     public function teams(Event $event)
@@ -90,6 +90,6 @@ class EventController extends Controller
         // dd($event->id);
         $teams = TeamRegistration::where('event_id', $event->id)->paginate(5);
         // dd($teams);
-        return view('page.events.teamsMembers', compact('event', 'teams'));
+        return view('page.Events.teamsMembers', compact('event', 'teams'));
     }
 }

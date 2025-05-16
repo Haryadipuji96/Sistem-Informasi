@@ -14,7 +14,7 @@
                 <!-- Desktop Menu -->
                 <div class="hidden sm:flex sm:items-center sm:space-x-8 ms-10">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white">
-                        {{ __('DESA INDRAJAYA') }}
+                        {{ __('Dashboard') }}
                     </x-nav-link>
 
                     <!-- Pemerintahan Dropdown -->
@@ -57,11 +57,15 @@
                         </x-slot>
 
                         <x-slot name="content">
+                            
                             <x-dropdown-link :href="route('TentangDesa.index')">Tentang Desa</x-dropdown-link>
+                            
                             <x-dropdown-link :href="route('berita.index')">Berita Desa</x-dropdown-link>
                             <x-dropdown-link :href="route('events.index')">Event</x-dropdown-link>
+                            @can('role-A')
                             <x-dropdown-link :href="route('Umkm.index')">UMKM</x-dropdown-link>
                             <x-dropdown-link :href="route('agendas.index')">Agenda Desa</x-dropdown-link>
+                            @endcan
                             <x-dropdown-link :href="route('GaleriDesa.index')">Galeri Desa</x-dropdown-link>
                         </x-slot>
                     </x-dropdown>

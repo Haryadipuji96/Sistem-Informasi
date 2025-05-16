@@ -7,6 +7,7 @@
                 {{ session('success') }}
             </div>
         @endif
+
         @can('role-A')
         <div class="mb-6 text-right">
             <a href="{{ route('apbdes.create') }}"
@@ -15,12 +16,12 @@
             </a>
         </div>
         @endcan
+
         <div class="overflow-x-auto">
             <table class="w-full table-auto border border-gray-300 rounded-lg">
                 <thead class="bg-gray-100">
                     <tr>
                         <th class="px-4 py-2 text-left">Tahun</th>
-                        <th class="px-4 py-2 text-left">Jenis</th>
                         <th class="px-4 py-2 text-left">Kategori</th>
                         <th class="px-4 py-2 text-left">Jumlah</th>
                         <th class="px-4 py-2 text-left">Keterangan</th>
@@ -31,20 +32,17 @@
                     @forelse ($data as $row)
                         <tr class="border-t">
                             <td class="px-4 py-2">{{ $row->tahun }}</td>
-                            <td class="px-4 py-2">{{ $row->jenis }}</td>
                             <td class="px-4 py-2">{{ $row->kategori }}</td>
                             <td class="px-4 py-2">Rp {{ number_format($row->jumlah, 0, ',', '.') }}</td>
                             <td class="px-4 py-2">{{ $row->keterangan ?? '-' }}</td>
                             <td class="px-4 py-2 flex space-x-2">
-                                <!-- Tombol Edit -->
-                            @can('role-A')
+                                @can('role-A')
                                 <button 
                                     class="text-sm bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600"
                                     onclick="openModal({{ $row->id }})">
                                     Edit
                                 </button>
 
-                                <!-- Tombol Hapus -->
                                 <form action="{{ route('apbdes.destroy', $row->id) }}" method="POST"
                                     onsubmit="return confirm('Yakin ingin menghapus data ini?')">
                                     @csrf
@@ -70,25 +68,19 @@
                                     <div class="mb-4">
                                         <label class="block mb-1 font-medium">Tahun</label>
                                         <input type="number" name="tahun" value="{{ $row->tahun }}"
-                                            class="w-full border border-gray-300 rounded px-3 py-2">
-                                    </div>
-
-                                    <div class="mb-4">
-                                        <label class="block mb-1 font-medium">Jenis</label>
-                                        <input type="text" name="jenis" value="{{ $row->jenis }}"
-                                            class="w-full border border-gray-300 rounded px-3 py-2">
+                                            class="w-full border border-gray-300 rounded px-3 py-2" required>
                                     </div>
 
                                     <div class="mb-4">
                                         <label class="block mb-1 font-medium">Kategori</label>
                                         <input type="text" name="kategori" value="{{ $row->kategori }}"
-                                            class="w-full border border-gray-300 rounded px-3 py-2">
+                                            class="w-full border border-gray-300 rounded px-3 py-2" required>
                                     </div>
 
                                     <div class="mb-4">
                                         <label class="block mb-1 font-medium">Jumlah</label>
                                         <input type="number" name="jumlah" value="{{ $row->jumlah }}"
-                                            class="w-full border border-gray-300 rounded px-3 py-2">
+                                            class="w-full border border-gray-300 rounded px-3 py-2" required>
                                     </div>
 
                                     <div class="mb-4">
@@ -113,7 +105,7 @@
                         </div>
                     @empty
                         <tr>
-                            <td colspan="6" class="px-4 py-4 text-center text-gray-500">Belum ada data APBDES.</td>
+                            <td colspan="5" class="px-4 py-4 text-center text-gray-500">Belum ada data APBDES.</td>
                         </tr>
                     @endforelse
                 </tbody>

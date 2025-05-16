@@ -22,13 +22,7 @@
                        value="{{ old('tahun') }}">
             </div>
 
-            <div>
-                <label for="jenis" class="block text-gray-700 font-medium">Jenis</label>
-                <select name="jenis" id="jenis" class="w-full mt-1 border-gray-300 rounded-md shadow-sm">
-                    <option value="Pendapatan">Pendapatan</option>
-                    <option value="Belanja">Belanja</option>
-                </select>
-            </div>
+            <!-- Hapus input jenis -->
 
             <div>
                 <label for="kategori" class="block text-gray-700 font-medium">Kategori</label>

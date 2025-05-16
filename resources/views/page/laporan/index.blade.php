@@ -23,12 +23,6 @@
 
         {{-- Tombol Aksi --}}
         <div class="mb-6 flex flex-wrap gap-2 justify-between">
-            @can('role-A')
-            <a href="{{ route('laporan.create') }}"
-                class="bg-sky-500 text-white px-4 py-2 rounded hover:bg-sky-600 transition">
-                ➕ Tambah Laporan Baru
-            </a>
-            @endcan
             <div class="flex gap-2">
                 <button onclick="printLaporan()"
                     class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition">
@@ -53,7 +47,7 @@
                 <thead class="bg-orange-50 uppercase text-xs font-semibold">
                     <tr>
                         <th class="px-4 py-2">Kategori</th>
-                        <th class="px-4 py-2">Uraian</th>
+                        <th class="px-4 py-2">Keterangan</th>
                         <th class="px-4 py-2 text-right">Jumlah (Rp)</th>
                         <th class="px-4 py-2 text-center">Tahun</th>
                     </tr>
@@ -62,7 +56,7 @@
                     @foreach ($reports as $report)
                         <tr class="border-b hover:bg-gray-50">
                             <td class="px-4 py-2">{{ $report->kategori }}</td>
-                            <td class="px-4 py-2">{{ $report->uraian }}</td>
+                            <td class="px-4 py-2">{{ $report->keterangan }}</td>
                             <td class="px-4 py-2 text-right">{{ number_format($report->jumlah, 0, ',', '.') }}</td>
                             <td class="px-4 py-2 text-center">{{ $report->tahun }}</td>
                         </tr>
