@@ -7,7 +7,8 @@
             </div>
             <!-- Form Pencarian -->
             <div class="mb-6">
-                <form action="{{ route('DataPegawai.index') }}" method="GET" class="flex items-center space-x-2">
+                <form id="searchForm" action="{{ route('DataPegawai.index') }}" method="GET"
+                    class="flex items-center space-x-2"">
                     <!-- Input Pencarian -->
                     <div class="relative w-full max-w-md ">
                         <input type="text" name="search" placeholder="Cari Nama Pegawai..."
@@ -194,6 +195,51 @@
             </form>
         </div>
     </div>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // cegah reload halaman
+        
+            let query = this.search.value;
+        
+            fetch("{{ route('DataPegawai.search') }}?search=" + encodeURIComponent(query), {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.json();
+                })
+                .then(data => {
+                    const tbody = document.querySelector('tbody'); // Bisa ganti dengan yang lebih spesifik
+                    tbody.innerHTML = ''; // kosongkan dulu isi tabel
+        
+                    if (!data.data || data.data.length === 0) {
+                        tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4">Data tidak ditemukan.</td></tr>';
+                        return;
+                    }
+        
+                    data.data.forEach((employee, index) => {
+                        tbody.innerHTML += `
+                        <tr>
+                            <td class="py-2 px-4 border-b text-center">${index + 1}</td>
+                            <td class="py-2 px-4 border-b">${employee.name}</td>
+                            <td class="py-2 px-4 border-b">${employee.position}</td>
+                            <td class="py-2 px-4 border-b">${employee.address}</td>
+                            <td class="py-2 px-4 border-b">${employee.gender}</td>
+                            <td class="py-2 px-4 border-b">${employee.pendidikan}</td>
+                            <td class="px-6 py-4">
+                              <!-- Tambah tombol edit/delete jika perlu -->
+                            </td>
+                        </tr>`;
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        });
+        </script>
+        
+
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -260,26 +306,26 @@
         };
 
         // Chart.js Initialization
-        const employees = {!! json_encode($DataPegawai) !!};
+        // Ambil data pegawai murni dari paginasi
+        const employees = {!! json_encode($DataPegawai->items()) !!};
+
+        console.log(employees);
+
         let myChart;
 
         function createChart(type, labels, data, title) {
             const ctx = document.getElementById('myChart').getContext('2d');
 
-            // Jika chart sudah ada, hancurkan terlebih dahulu
             if (myChart) {
-                myChart.destroy(); // Hancurkan chart sebelumnya jika ada
+                myChart.destroy();
             }
 
-            // Pastikan data ada sebelum membuat chart
             if (labels.length === 0 || data.length === 0) {
-                // Jika data kosong, tampilkan chart kosong dengan pesan
                 document.getElementById('chartTitle').innerText = 'Tidak Ada Data Pegawai';
             } else {
                 document.getElementById('chartTitle').innerText = title;
             }
 
-            // Buat chart baru dengan data yang diperbarui
             myChart = new Chart(ctx, {
                 type: type,
                 data: {
@@ -287,8 +333,8 @@
                     datasets: [{
                         label: title,
                         data: data,
-                        backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
-                        borderColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
+                        backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)'],
+                        borderColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)'],
                         borderWidth: 1
                     }]
                 },
@@ -302,15 +348,13 @@
             });
         }
 
-        // Tampilkan chart default saat halaman dimuat
         window.addEventListener('DOMContentLoaded', function() {
             const ctx = document.getElementById('myChart').getContext('2d');
 
             if (employees.length === 0) {
-                // Jika database kosong, tampilkan chart kosong
                 document.getElementById('chartTitle').innerText = 'Tidak Ada Data Pegawai';
                 if (myChart) {
-                    myChart.destroy(); // Hancurkan chart jika ada sebelumnya
+                    myChart.destroy();
                 }
                 myChart = new Chart(ctx, {
                     type: 'pie',
@@ -327,7 +371,6 @@
                     }
                 });
             } else {
-                // Jika ada data pegawai, tampilkan chart
                 const genderData = {};
                 employees.forEach(employee => {
                     if (!genderData[employee.gender]) {

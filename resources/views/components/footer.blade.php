@@ -79,17 +79,18 @@
                             </a>
 
                         </li>
-                        <li>
-                            <a href="{{ route('DataPegawai.index') }}" class="flex items-center hover:text-orange-600">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
-                                    <path
-                                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
-                                </svg>
-                                Data Pegawai
-                            </a>
-
-                        </li>
+                        @can('role-A')
+                            <li>
+                                <a href="{{ route('DataPegawai.index') }}" class="flex items-center hover:text-orange-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
+                                        <path
+                                            d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                                    </svg>
+                                    Data Pegawai
+                                </a>
+                            </li>
+                        
                         <li>
                             <a href="{{ route('apbdes.index') }}" class="flex items-center hover:text-orange-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -101,6 +102,7 @@
                             </a>
 
                         </li>
+                        @endcan
                         <li>
                             <a href="{{ route('VisiMisi.index') }}" class="flex items-center hover:text-orange-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -134,6 +136,7 @@
                             </a>
 
                         </li>
+                        @can('role-A')
                         <li>
                             <a href="{{ route('Umkm.index') }}" class="flex items-center hover:text-orange-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -154,8 +157,8 @@
                                 </svg>
                                 Agenda Desa
                             </a>
-
                         </li>
+                        @endcan
                         <li>
                             <a href="{{ route('GaleriDesa.index') }}"
                                 class="flex items-center hover:text-orange-600">
@@ -168,8 +171,19 @@
                             </a>
 
                         </li>
-                    </ul>
+                        <li>
+                            <a href="{{ route('events.index') }}"
+                                class="flex items-center hover:text-orange-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-caret-right-fill mr-2" viewBox="0 0 16 16">
+                                    <path
+                                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                                </svg>
+                                Event
+                            </a>
 
+                        </li>
+                    </ul>
                 </div>
                 <!-- Media Sosial -->
                 <div>
@@ -177,7 +191,8 @@
                     <ul class="social-links list-inline list-unstyled d-flex">
                         <!-- Facebook (SVG) -->
                         <li class="list-inline-item me-3">
-                            <a href="https://web.facebook.com/profile.php?id=100064935960355" target="_blank" class="social-icon">
+                            <a href="https://web.facebook.com/profile.php?id=100064935960355" target="_blank"
+                                class="social-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                     fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
                                     <path
@@ -197,7 +212,8 @@
                         </li>
                         <!-- YouTube (SVG) -->
                         <li class="list-inline-item me-3">
-                            <a href="https://www.youtube.com/@pemdesindrajaya6662" target="_blank" class="social-icon">
+                            <a href="https://www.youtube.com/@pemdesindrajaya6662" target="_blank"
+                                class="social-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                     fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
                                     <path
@@ -225,5 +241,5 @@
 <!-- Footer Bawah -->
 <footer class="bg-slate-800 text-white text-center p-4 mt-0">
     <p>&copy; 2025 Pemerintahan Desa Indrajaya. Kec.Sukaratu, Kab.Tasikmalaya.</p>
-</footer>  
+</footer>
 </div>

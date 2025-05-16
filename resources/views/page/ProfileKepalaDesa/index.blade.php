@@ -8,42 +8,29 @@
     {{-- BAGIAN PROFILE --}}
     <section class="container mx-auto mt-8 p-6 bg-white shadow-md rounded-md">
         <div class="flex flex-col md:flex-row items-center md:items-start" data-aos="fade-up">
-            <!-- Foto Kepala Desa -->
-            <img src="{{ asset('image/Kades.png') }}" alt="Kepala Desa"
-                class="w-30 max-w-lg h-[500px] md:h-[600px] object-cover rounded-lg shadow-lg" data-aos="fade-right"
-                data-aos-duration="1500" data-aos-delay="500">
-
-            <!-- Informasi Kepala Desa -->
-            <div class="ml-6 flex-1 text-justify" data-aos="fade-left" data-aos-duration="1500" data-aos-delay="700">
-                <h3 class="text-xl font-semibold text-start md:text-left">Yudi Sutiana</h3>
-                <p class="text-black-600 text-start md:text-left font-bold">Kepala Desa Indrajaya</p>
-                <p class="mt-2">Assalamualaikum Warahmatullahi Wabarakatuh,</p>
-                <p>Puji syukur kita panjatkan kehadirat Allah Yang Maha Esa, karena atas Rahmat dan Hidayah-Nya saat ini
-                    kita telah menghadirkan Website resmi milik Pemerintah Desa Indrajaya dengan alamat <a
-                        href="https://www.indrajayadesa.go.id"
-                        class="text-blue-600 underline">www.indrajayadesa.go.id</a>.
-                    Dengan diresmikannya Website Desa Indrajaya, kami berharap Desa Indrajaya dapat lebih dikenal oleh
-                    masyarakat luas, baik di tingkat lokal maupun nasional, melalui pemanfaatan sarana Teknologi
-                    Informasi.</p>
-                <p>Saya menyambut baik adanya Website Desa Indrajaya yang berisi informasi mengenai potensi Desa
-                    Indrajaya dari berbagai aspek. Mulai dari bidang pertanian, perikanan, pariwisata, pendidikan,
-                    hingga budaya lokal yang menjadi ciri khas Desa Indrajaya.
-                    Semoga dengan adanya Website ini, Desa Indrajaya akan semakin terpublikasi kepada masyarakat luas
-                    serta menjadi daya tarik bagi wisatawan dan investor.</p>
-                <p>Selain sebagai media promosi daerah kepada pihak luar, melalui website ini masyarakat juga dapat
-                    mengakses informasi penting mengenai Desa Indrajaya, seperti program pembangunan, layanan
-                    administrasi, serta berita terkini seputar kegiatan desa.
-                    Hadirnya Website ini merupakan salah satu langkah yang ditempuh Pemerintah Desa Indrajaya dalam
-                    rangka meningkatkan transparansi informasi dan mempermudah akses layanan bagi masyarakat.</p>
-                <p>Kami mengharapkan kepada seluruh masyarakat Desa Indrajaya dan masyarakat luas dimanapun berada untuk
-                    turut mengakses Website ini.
-                    Saya berharap Website ini akan bermanfaat bagi masyarakat luas serta menjadi sarana untuk memajukan
-                    Desa Indrajaya menuju kemajuan yang lebih baik.</p>
-                <p>Wabillahi Taufik Walhidayah</p>
-                <p>Wassalamualaikum Warahmatullahi Wabarakatuh.</p>
-            </div>
+          <!-- Foto Kepala Desa -->
+          <img src="{{ asset('image/Kades.png') }}" alt="Kepala Desa"
+          class="w-72 sm:w-80 md:w-96 lg:w-80 xl:w-72 h-auto max-h-[700px] object-cover rounded-lg shadow-lg"
+          data-aos="fade-right" data-aos-duration="1500" data-aos-delay="500">
+      
+          <!-- Informasi Kepala Desa -->
+          <div class="ml-0 md:ml-6 flex-1 text-justify" data-aos="fade-left" data-aos-duration="1500" data-aos-delay="700">
+            <h3 class="text-xl font-semibold text-center md:text-left">Yudi Sutiana</h3>
+            <p class="text-gray-700 text-center md:text-left font-bold">Kepala Desa Indrajaya</p>
+            <p class="mt-2">Assalamualaikum Warahmatullahi Wabarakatuh,</p>
+            <!-- Isi lainnya tetap sama -->
+            <p>Puji syukur kita panjatkan kehadirat Allah Yang Maha Esa, karena atas Rahmat dan Hidayah-Nya saat ini
+              kita telah menghadirkan Website resmi milik Pemerintah Desa Indrajaya dengan alamat <a
+                href="https://www.indrajayadesa.go.id"
+                class="text-blue-600 underline">www.indrajayadesa.go.id</a>.
+              Dengan diresmikannya Website Desa Indrajaya, kami berharap Desa Indrajaya dapat lebih dikenal oleh
+              masyarakat luas, baik di tingkat lokal maupun nasional, melalui pemanfaatan sarana Teknologi
+              Informasi.</p>
+            <!-- lanjutkan isi lainnya... -->
+          </div>
         </div>
-    </section>
+      </section>
+      
 
     {{-- BAGIAN ACCORDION --}}
     <div class="container mx-auto mt-8 p-6 bg-white shadow-md rounded-md">

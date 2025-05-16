@@ -65,22 +65,6 @@
             </button>
         </div>
 
-        {{-- Section Sambutan Kepala Desa --}}
-        <section class="py-16 bg-gradient-to-r from-amber-50 to-amber-50" data-aos="fade-up" data-aos-duration="1200">
-            <div class="max-w-5xl mx-auto text-center px-6">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">👨‍🌾 Sambutan Kepala Desa</h2>
-              <p class="text-gray-800 text-lg leading-relaxed">
-                    Assalamu'alaikum Warahmatullahi Wabarakatuh. <br><br>
-                    Selamat datang di Website Resmi Desa Indrajaya. Website ini kami hadirkan untuk memberikan kemudahan
-                    akses informasi kepada masyarakat dan mempererat komunikasi antara pemerintah desa dan warga. Semoga
-                    dapat bermanfaat dan menjadi sarana pembangunan desa yang lebih baik.
-                </p>
-                <div class="mt-8">
-                    <span class="inline-block text-gray-800 font-semibold">- Yudi Sutiana</span>
-                </div>
-            </div>
-        </section>
-
         {{-- Section Tentang Desa --}}
         <section class="py-20 bg-white" data-aos="fade-up" data-aos-duration="1500">
             <div class="max-w-6xl mx-auto px-6">

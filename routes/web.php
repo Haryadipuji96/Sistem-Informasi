@@ -74,6 +74,7 @@ Route::prefix('laporan')->group(function () {
 // Route Page Kritik Dan Saran
 Route::get('/kritik-saran', [KritikSaranController::class, 'create'])->name('kritik-saran.create');
 Route::post('/kritik-saran', [KritikSaranController::class, 'store'])->name('kritik-saran.store');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
@@ -95,12 +96,14 @@ Route::resource('berita', BeritaController::class);
 
 
 
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('StukturOrganisasi', StukturOrganisasiController::class)->middleware('auth');
     Route::resource('DataPegawai', DataPegawaiController::class)->middleware('auth');
+    Route::get('/DataPegawai/search', [DataPegawaiController::class, 'search'])->name('DataPegawai.search');
     Route::resource('kontak', KontakController::class)->middleware('auth');
     Route::get('/apbdes', [ApbdesController::class, 'index'])->name('apbdes.index');
     Route::get('/apbdes/create', [ApbdesController::class, 'create'])->name('apbdes.create');
@@ -109,8 +112,9 @@ Route::middleware('auth')->group(function () {
     Route::put('/apbdes/{id}', [ApbdesController::class, 'update'])->name('apbdes.update');
     Route::delete('/apbdes/{id}', [ApbdesController::class, 'destroy'])->name('apbdes.destroy');
     //    Route kritik dan saran khusus admin
-    Route::middleware('can:role-A')->group(function () {
-        Route::get('/admin/kritik-saran', [KritikSaranController::class, 'index'])->name('admin.kritik-saran.index');
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/admin/kritik-saran', [KritikSaranController::class, 'index'])->name('kritik-saran.index');
+        Route::delete('/admin/kritik-saran/{id}', [KritikSaranController::class, 'destroy'])->name('kritik-saran.destroy');
     });
     // Tampilkan form tambah event
     // Route::get('/events/create', [EventController::class, 'create'])->name('events.create');

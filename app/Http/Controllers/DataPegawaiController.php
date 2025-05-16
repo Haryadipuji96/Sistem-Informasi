@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DataPegawai;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Exception;
 
 class DataPegawaiController extends Controller
@@ -26,7 +27,7 @@ class DataPegawaiController extends Controller
 
             return view('page.DataPegawai.index', compact('DataPegawai'));
         } catch (Exception $e) {
-            echo "<script>console.error('PHP Error: " . addslashes($e->getMessage()) . "');</script>";
+            Log::error('DataPegawaiController@index Error: ' . $e->getMessage());
             return view('error.index');
         }
     }
@@ -39,6 +40,7 @@ class DataPegawaiController extends Controller
         try {
             return view('page.DataPegawai.create');
         } catch (Exception $e) {
+            Log::error('DataPegawaiController@create Error: ' . $e->getMessage());
             return back()->withErrors(['error' => 'Terjadi kesalahan saat membuka formulir tambah data pegawai.']);
         }
     }
@@ -64,7 +66,7 @@ class DataPegawaiController extends Controller
             // Redirect ke halaman index dengan pesan sukses
             return redirect()->route('DataPegawai.index')->with('success', 'Data pegawai berhasil ditambahkan.');
         } catch (Exception $e) {
-            echo "<script>console.error('PHP Error: " . addslashes($e->getMessage()) . "');</script>";
+            Log::error('DataPegawaiController@store Error: ' . $e->getMessage());
             return view('error.index');
         }
     }
@@ -72,12 +74,13 @@ class DataPegawaiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
         try {
             $pegawai = DataPegawai::findOrFail($id);
             return view('page.DataPegawai.show', compact('pegawai'));
         } catch (Exception $e) {
+            Log::error('DataPegawaiController@show Error: ' . $e->getMessage());
             return back()->withErrors(['error' => 'Data pegawai tidak ditemukan.']);
         }
     }
@@ -85,11 +88,13 @@ class DataPegawaiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(DataPegawai $employee)
+    public function edit($id)
     {
         try {
+            $employee = DataPegawai::findOrFail($id);
             return view('page.DataPegawai.edit', compact('employee'));
         } catch (Exception $e) {
+            Log::error('DataPegawaiController@edit Error: ' . $e->getMessage());
             return back()->withErrors(['error' => 'Terjadi kesalahan saat membuka formulir edit data pegawai.']);
         }
     }
@@ -129,7 +134,7 @@ class DataPegawaiController extends Controller
             return redirect()
                 ->route('DataPegawai.index')->with('success', 'Data pegawai berhasil diperbarui.');
         } catch (Exception $e) {
-            echo "<script>console.error('PHP Error: " . addslashes($e->getMessage()) . "');</script>";
+            Log::error('DataPegawaiController@update Error: ' . $e->getMessage());
             return view('error.index');
         }
     }
@@ -143,10 +148,33 @@ class DataPegawaiController extends Controller
             $data = DataPegawai::findOrFail($id);
             $data->delete();
             return back()->with('message_delete', 'Data Customer Sudah dihapus');
-        } catch (\Exception $e) {
-            echo "<script>console.error('PHP Error: " .
-                addslashes($e->getMessage()) . "');</script>";
+        } catch (Exception $e) {
+            Log::error('DataPegawaiController@destroy Error: ' . $e->getMessage());
             return view('error.index');
         }
+    }
+
+    /**
+     * Search data pegawai via AJAX, return JSON.
+     */
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+
+        $data = DataPegawai::where('name', 'like', "%{$search}%")->get();
+
+        return response()->json(['data' => $data]);
+    }
+
+    /**
+     * API endpoint untuk data chart gender pegawai.
+     */
+    public function chartData()
+    {
+        $data = DataPegawai::select('gender', DB::raw('count(*) as total'))
+            ->groupBy('gender')
+            ->get();
+
+        return response()->json($data);
     }
 }
