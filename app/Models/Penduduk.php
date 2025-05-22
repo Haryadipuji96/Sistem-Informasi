@@ -9,8 +9,7 @@ class Penduduk extends Model
 {
     use HasFactory;
 
-    // Tentukan nama tabel secara eksplisit
-    protected $table = 'penduduk';
+    protected $table = 'penduduk'; // <-- ini wajib, supaya Laravel tahu tabelnya 'penduduk'
 
     protected $fillable = [
         'nama',
@@ -19,5 +18,4 @@ class Penduduk extends Model
         'jenis_kelamin',
         'alamat',
     ];
-    
 }

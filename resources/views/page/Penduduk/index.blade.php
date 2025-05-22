@@ -1,240 +1,203 @@
 <x-app-layout>
-    <div class="bg-white min-h-screen">
-        <!-- Container untuk tabel -->
-        <div class="container mx-auto p-6">
-            
-            <div class="flex items-center justify-between mb-6 font-semibold text-xl">
-                <div>DATA PENDUDUK</div>
-                @can('role-A')
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
-                    Tambah Data Penduduk
-                </button>
-                @endcan
-            </div>
-            
-            <!-- Tabel Data Penduduk -->
-             <div class="overflow-x-auto">
-                <div class="w-full table-auto border border-gray-300 rounded-lg">
-                    <div class="p-12" style="width:100%; overflow-x:auto;">
-                        <table class="min-w-full bg-white border border-gray-300">
-                            <thead>
-                                <tr>
-                                    <th class="py-2 px-4 border-b">No</th>
-                                    <th class="py-2 px-4 border-b">Nama</th>
-                                    <th class="py-2 px-4 border-b">NIK</th>
-                                    <th class="py-2 px-4 border-b">Tanggal Lahir</th>
-                                    <th class="py-2 px-4 border-b">Jenis Kelamin</th>
-                                    <th class="py-2 px-4 border-b">Alamat</th>
-                                    <th class="py-2 px-4 border-b text-center">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($penduduk as $index => $item)
-                                    <tr>
-                                        <td class="py-2 px-4 border-b text-center">{{ $index + 1 }}</td>
-                                        <td class="py-2 px-4 border-b">{{ $item->nama }}</td>
-                                        <td class="py-2 px-4 border-b">{{ $item->nik }}</td>
-                                        <td class="py-2 px-4 border-b">{{ $item->tanggal_lahir }}</td>
-                                        <td class="py-2 px-4 border-b">{{ $item->jenis_kelamin }}</td>
-                                        <td class="py-2 px-4 border-b">{{ $item->alamat }}</td>
-                                        <td class="px-6 py-4">
-                                            @can('role-A')
-                                                <!-- Tombol Edit -->
-                                                <button type="button" data-id="{{ $item->id }}"
-                                                    data-nama="{{ $item->nama }}" data-modal-target="editModal"
-                                                    data-nik="{{ $item->nik }}"
-                                                    data-tanggal_lahir="{{ $item->tanggal_lahir }}"
-                                                    data-jenis_kelamin="{{ $item->jenis_kelamin }}"
-                                                    data-alamat="{{ $item->alamat }}" onclick="editSourceModal(this)"
-                                                    class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
-                                                    Edit
-                                                </button>
-                                                <!-- Tombol Delete -->
-                                                <button
-                                                    onclick="deleteEmployee({{ $item->id }}, '{{ $item->nama }}')"
-                                                    class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded-md text-xs text-white ml-2">
-                                                    Delete
-                                                </button>
-                                            @endcan
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal Create -->
-        <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="createModalLabel">Tambah Data Penduduk</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{ route('Penduduk.store') }}" method="POST">
-                            @csrf
-                            <div class="mb-3">
-                                <label for="nama" class="form-label">Nama</label>
-                                <input type="text" name="nama" id="nama" class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="nik" class="form-label">NIK</label>
-                                <input type="text" name="nik" id="nik" class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
-                                <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="form-control"
-                                    required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
-                                <select name="jenis_kelamin" id="jenis_kelamin" class="form-control" required>
-                                    <option value="Laki-laki">Laki-laki</option>
-                                    <option value="Perempuan">Perempuan</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="alamat" class="form-label">Alamat</label>
-                                <textarea name="alamat" id="alamat" class="form-control" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal Edit -->
-        <div class="fixed inset-0 flex items-center justify-center z-50 hidden" id="editModal">
-            <div class="fixed inset-0 bg-black opacity-50"></div>
-            <div class="relative w-full md:w-1/3 bg-white rounded-lg shadow mx-5 max-h-[90vh] overflow-y-auto">
-                <div class="flex items-start justify-between p-4 border-b rounded-t">
-                    <h3 class="text-xl font-semibold text-gray-900" id="title_source">
-                        Edit Data Penduduk
-                    </h3>
-                    <button type="button" onclick="sourceModalClose(this)" data-modal-target="editModal"
-                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
-                <form method="POST" id="formSourceModal">
-                    @csrf
-                    @method('PUT')
-                    <div class="p-4 space-y-6">
-                        <div class="p-4 space-y-6">
-                            <!-- Nama -->
-                            <div class="mb-5">
-                                <label for="edit_nama"
-                                    class="block mb-2 text-sm font-medium text-gray-900">Nama</label>
-                                <input type="text" id="edit_nama" name="nama"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    placeholder="Masukkan nama..." required>
-                            </div>
-                            <!-- NIK -->
-                            <div class="mb-5">
-                                <label for="edit_nik" class="block mb-2 text-sm font-medium text-gray-900">NIK</label>
-                                <input type="text" id="edit_nik" name="nik"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    placeholder="Masukkan NIK..." required>
-                            </div>
-                            <!-- Tanggal Lahir -->
-                            <div class="mb-5">
-                                <label for="edit_tanggal_lahir"
-                                    class="block mb-2 text-sm font-medium text-gray-900">Tanggal Lahir</label>
-                                <input type="date" id="edit_tanggal_lahir" name="tanggal_lahir"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    required>
-                            </div>
-                            <!-- Jenis Kelamin -->
-                            <div class="mb-5">
-                                <label for="edit_jenis_kelamin"
-                                    class="block mb-2 text-sm font-medium text-gray-900">Jenis Kelamin</label>
-                                <select id="edit_jenis_kelamin" name="jenis_kelamin"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    required>
-                                    <option value="Laki-laki">Laki-laki</option>
-                                    <option value="Perempuan">Perempuan</option>
-                                </select>
-                            </div>
-                            <!-- Alamat -->
-                            <div class="mb-5">
-                                <label for="edit_alamat"
-                                    class="block mb-2 text-sm font-medium text-gray-900">Alamat</label>
-                                <textarea id="edit_alamat" name="alamat"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    placeholder="Masukkan alamat..."></textarea>
-                            </div>
-                        </div>
-                        <div class="flex items-center p-4 space-x-2 border-t border-gray-200 rounded-b">
-                            <button type="submit" id="formSourceButton"
-                                class="border border-black text-black font-bold py-2 px-4 rounded hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out">
-                                Simpan
-                            </button>
-                            <button type="button" data-modal-target="editModal" onclick="sourceModalClose(this)"
-                                class="border border-black text-black font-bold py-2 px-4 rounded hover:bg-red-500 hover:text-white transition duration-300 ease-in-out">
-                                Batal
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- JavaScript -->
-        <script>
-            // Fungsi untuk membuka modal edit
-            const editSourceModal = (button) => {
-                const formModal = document.getElementById('formSourceModal');
-                const modalTarget = button.dataset.modalTarget;
-                const id = button.dataset.id;
-                const nama = button.dataset.nama;
-                const nik = button.dataset.nik;
-                const tanggal_lahir = button.dataset.tanggal_lahir;
-                const jenis_kelamin = button.dataset.jenis_kelamin;
-                const alamat = button.dataset.alamat;
-                let url = "{{ route('Penduduk.update', ':id') }}".replace(':id', id);
-                // Isi nilai input modal
-                document.getElementById('edit_nama').value = nama;
-                document.getElementById('edit_nik').value = nik;
-                document.getElementById('edit_tanggal_lahir').value = tanggal_lahir;
-                document.getElementById('edit_jenis_kelamin').value = jenis_kelamin;
-                document.getElementById('edit_alamat').value = alamat;
-                // Set action URL form
-                document.getElementById('formSourceModal').setAttribute('action', url);
-                // Tampilkan modal
-                document.getElementById(modalTarget).classList.toggle('hidden');
-            };
-            // Fungsi untuk menutup modal
-            function sourceModalClose(button) {
-                const modalTarget = button.dataset.modalTarget;
-                document.getElementById(modalTarget).classList.add('hidden');
-            }
-            // Fungsi untuk menghapus data penduduk
-            const deleteEmployee = async (id, nama) => {
-        let tanya = confirm(`Apakah anda yakin untuk menghapus Penduduk ${nama} ?`);
-        if (tanya) {
-            try {
-                const response = await axios.post(`/Penduduk/${id}`, {
-                    '_method': 'DELETE',
-                    '_token': document.querySelector('meta[name="csrf-token"]').getAttribute(
-                        'content')
-                });
+    <div class="container py-5">
+        <div class="bg-white rounded shadow-sm p-5">
+            <h2 class="text-center mb-5 fw-bold" style="color: #F97316;">
+                📊 Statistik Penduduk Desa Indrajaya
+            </h2>
 
-                if (response.status === 200) {
-                    alert('Penduduk berhasil dihapus');
-                    location.reload();
-                } else {
-                    // alert('Gagal menghapus departemen. Silakan coba lagi.');
-                    location.windows('error.index');
-                }
-            } catch (error) {
-                console.error(error);
-                // alert('Terjadi kesalahan saat menghapus departemen. Silakan cek konsol untuk detail.');
-                location.windows('error.index');
-            }
-        }
-    };
-        </script>
+            <div class="row text-center g-4">
+                <div class="col-md-4">
+                    <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body">
+                            <h5 class="card-title text-uppercase text-muted">Total Penduduk</h5>
+                            <h1 class="display-4 fw-bold text-primary">{{ $total }} jiwa</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body">
+                            <h5 class="card-title text-uppercase text-muted">Laki-laki</h5>
+                            <h1 class="display-4 fw-bold text-info">{{ $laki }} jiwa</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body">
+                            <h5 class="card-title text-uppercase text-muted">Perempuan</h5>
+                            <h1 class="display-4 fw-bold text-danger">{{ $perempuan }} jiwa</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5 text-center">
+                <h4 class="mb-4 fw-semibold">Visualisasi Jenis Kelamin Penduduk</h4>
+                <canvas id="pendudukChart" style="max-width: 400px; margin: auto;"></canvas>
+            </div>
+        </div>
+
+        {{-- CRUD Section --}}
+        <div class="mt-5 bg-white rounded shadow-sm p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="fw-bold" style="color: #F97316;">Daftar Penduduk</h3>
+                <a href="{{ route('penduduk.create') }}" class="btn btn-success">
+                    <i class="bi bi-plus-lg"></i> Tambah Penduduk
+                </a>
+            </div>
+
+            @if (session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+
+            <div class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Nama</th>
+                            <th>NIK</th>
+                            <th>Tanggal Lahir</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Alamat</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($penduduk as $index => $p)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $p->nama }}</td>
+                                <td>{{ $p->nik }}</td>
+                                <td>{{ \Carbon\Carbon::parse($p->tanggal_lahir)->format('d-m-Y') }}</td>
+                                <td>{{ $p->jenis_kelamin }}</td>
+                                <td>{{ $p->alamat }}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-warning me-2" data-bs-toggle="modal"
+                                        data-bs-target="#editModal{{ $p->id }}">
+                                        <i class="bi bi-pencil-square"></i> Edit
+                                    </button>
+                                    <form action="{{ route('penduduk.destroy', $p->id) }}" method="POST"
+                                        class="d-inline" onsubmit="return confirm('Yakin ingin hapus data ini?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="bi bi-trash"></i> Hapus
+                                        </button>
+                                    </form>
+
+                                    {{-- Modal Edit --}}
+                                    <div class="modal fade" id="editModal{{ $p->id }}" tabindex="-1"
+                                        aria-labelledby="editModalLabel{{ $p->id }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <form action="{{ route('penduduk.update', $p->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="editModalLabel{{ $p->id }}">
+                                                            Edit Data Penduduk</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="mb-3">
+                                                            <label>Nama</label>
+                                                            <input type="text" name="nama"
+                                                                value="{{ $p->nama }}" class="form-control"
+                                                                required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label>NIK</label>
+                                                            <input type="text" name="nik"
+                                                                value="{{ $p->nik }}" class="form-control"
+                                                                required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label>Tanggal Lahir</label>
+                                                            <input type="date" name="tanggal_lahir"
+                                                                value="{{ $p->tanggal_lahir }}" class="form-control"
+                                                                required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label>Jenis Kelamin</label>
+                                                            <select name="jenis_kelamin" class="form-control" required>
+                                                                <option value="Laki-laki"
+                                                                    {{ $p->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>
+                                                                    Laki-laki</option>
+                                                                <option value="Perempuan"
+                                                                    {{ $p->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>
+                                                                    Perempuan</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label>Alamat</label>
+                                                            <textarea name="alamat" class="form-control">{{ $p->alamat }}</textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan
+                                                            Perubahan</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        @endforeach
+
+                        @if ($penduduk->count() == 0)
+                            <tr>
+                                <td colspan="7" class="text-center text-muted">Data penduduk belum tersedia.</td>
+                            </tr>
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+
+    {{-- Chart.js CDN --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('pendudukChart');
+
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Laki-laki', 'Perempuan'],
+                datasets: [{
+                    label: 'Jumlah Penduduk',
+                    data: [{{ $laki }}, {{ $perempuan }}],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 99, 132, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
 </x-app-layout>

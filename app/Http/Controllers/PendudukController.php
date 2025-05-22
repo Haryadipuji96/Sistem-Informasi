@@ -3,121 +3,63 @@
 namespace App\Http\Controllers;
 
 use App\Models\Penduduk;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-use function Illuminate\Log\log;
-
 class PendudukController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        try {
-            $penduduk = Penduduk::all();
-            return view('page.Penduduk.index', compact('penduduk'));
-        } catch (\Exception $e) {
-            echo "<script>console.error('PHP Error: " . addslashes($e->getMessage()) . "');</script>";
-            return view('error.index');
-        }
+        $penduduk = Penduduk::all();
+
+        $total = $penduduk->count();
+        $laki = $penduduk->where('jenis_kelamin', 'Laki-laki')->count();
+        $perempuan = $penduduk->where('jenis_kelamin', 'Perempuan')->count();
+
+        return view('page.Penduduk.index', compact('penduduk', 'total', 'laki', 'perempuan'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        try {
-            return view('page.Penduduk.create');
-        } catch (Exception $e) {
-            return back()->withErrors(['error' => 'Terjadi kesalahan saat membuka formulir tambah data UMKM.']);
-        }
-    }
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        try {
-            $validated = $request->validate([
-                'nama' => 'required|string|max:255',
-                'nik' => 'required|string|unique:penduduk|max:16',
-                'tanggal_lahir' => 'required|date',
-                'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
-                'alamat' => 'nullable|string',
-            ]);
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',
+            'nik' => 'required|string|unique:penduduk|max:16',
+            'tanggal_lahir' => 'required|date',
+            'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
+            'alamat' => 'nullable|string',
+        ]);
 
-            Penduduk::create($validated);
+        Penduduk::create($validated);
 
-            return redirect()->route('Penduduk.index')->with('success', 'Data berhasil ditambahkan.');
-        } catch (\Exception $e) {
-            echo "<script>console.error('PHP Error: " . addslashes($e->getMessage()) . "');</script>";
-            return view('error.index');
-        }
+        return redirect()->route('penduduk.index')->with('success', 'Data berhasil ditambahkan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',
+            'nik' => 'required|string|max:16|unique:penduduk,nik,' . $id,
+            'tanggal_lahir' => 'required|date',
+            'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
+            'alamat' => 'nullable|string',
+        ]);
+
+        $penduduk = Penduduk::findOrFail($id);
+        $penduduk->update($validated);
+
+        return redirect()->route('penduduk.index')->with('success', 'Data berhasil diperbarui.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Penduduk $penduduk)
+    public function destroy($id)
     {
-        try {
-            return view('page.Penduduk.edit', compact('penduduk'));
-        } catch (Exception $penduduk) {
-            return back()->withErrors(['error' => 'Terjadi kesalahan saat membuka formulir edit data PENDUDUK.']);
-        }
+        $penduduk = Penduduk::findOrFail($id);
+        $penduduk->delete();
+
+        return redirect()->route('penduduk.index')->with('success', 'Data berhasil dihapus.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function create()
     {
-        try {       
-            // Perbarui data penduduk
-            $data = [
-                'nama' => $request->input('nama'),
-                'nik' => $request->input('nik'),
-                'tanggal_lahir' => $request->input('tanggal_lahir'),
-                'jenis_kelamin' => $request->input('jenis_kelamin'),
-                'alamat' => $request->input('alamat'),
-            ];
-
-            $datas = penduduk::findOrFail($id);
-            $datas->update($data);
-            return redirect()
-            ->route('Penduduk.index')->with('message_insert', 'data Penduduk Berhasil diperbarui');
-        }   catch (\Exception $e) {
-            return redirect()
-            ->route('error.index')->with('error_message', 'terjadi kesalahan saat menambahkan data:' . $e->getMessage());
-          
-    }
-}
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        try {
-            $data = Penduduk::findOrFail($id);
-            $data->delete();
-            return back()->with('message_delete', 'Data Penduduk Sudah dihapus');
-        } catch (\Exception $e) {
-            // return back()->with('error_message', 'Terjadi kesalahan saat menghapus data:
-            // ' . $e->getMessage());
-            return view('error.index');
-        }
+        return view('page.Penduduk.create'); // Pastikan file blade ini ada dan berisi form tambah data
     }
 }

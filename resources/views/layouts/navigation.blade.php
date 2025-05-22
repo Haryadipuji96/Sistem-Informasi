@@ -37,7 +37,7 @@
                             @endcannot
                             @can('role-A')
                                 <x-dropdown-link :href="route('DataPegawai.index')">Data Pegawai</x-dropdown-link>
-                                <x-dropdown-link :href="route('Penduduk.index')">Data Penduduk</x-dropdown-link>
+                                <x-dropdown-link :href="route('penduduk.index')">Statistik Penduduk</x-dropdown-link>
                                 <x-dropdown-link :href="route('apbdes.index')">APBDES</x-dropdown-link>
                             @endcan
                         </x-slot>
@@ -132,20 +132,17 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 Dashboard
             </x-responsive-nav-link>
-
             <x-responsive-nav-link :href="route('ProfileKepalaDesa.index')">Profile Kepala Desa</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('DataPegawai.index')">Data Pegawai</x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('Penduduk.index')">Data Penduduk</x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('penduduk.index')">Statistik Penduduk</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('apbdes.index')">APBDES</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('VisiMisi.index')">Visi Misi</x-responsive-nav-link>
-
             <x-responsive-nav-link :href="route('TentangDesa.index')">Tentang Desa</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('berita.index')">Berita Desa</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('events.index')">Event</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('Umkm.index')">UMKM</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('agendas.index')">Agenda Desa</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('GaleriDesa.index')">Galeri Desa</x-responsive-nav-link>
-
             <x-responsive-nav-link :href="route('laporan.index')">Laporan</x-responsive-nav-link>
         </div>
 
