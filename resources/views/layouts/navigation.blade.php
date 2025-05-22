@@ -37,7 +37,7 @@
                             @endcannot
                             @can('role-A')
                                 <x-dropdown-link :href="route('DataPegawai.index')">Data Pegawai</x-dropdown-link>
-                                <x-dropdown-link :href="route('penduduk.index')">Statistik Penduduk</x-dropdown-link>
+                                <x-dropdown-link :href="route('statistik.index')">Statistik Penduduk</x-dropdown-link>
                                 <x-dropdown-link :href="route('apbdes.index')">APBDES</x-dropdown-link>
                             @endcan
                         </x-slot>
@@ -134,7 +134,7 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('ProfileKepalaDesa.index')">Profile Kepala Desa</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('DataPegawai.index')">Data Pegawai</x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('penduduk.index')">Statistik Penduduk</x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('statistik.index')">Statistik Penduduk</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('apbdes.index')">APBDES</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('VisiMisi.index')">Visi Misi</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('TentangDesa.index')">Tentang Desa</x-responsive-nav-link>

@@ -65,6 +65,117 @@
             </button>
         </div>
 
+
+        {{-- Ringkasan Statistik --}}
+        <div class="row text-center mb-5 mt-5">
+            @php
+                $summaryCards = [
+                    [
+                        'label' => 'Jumlah Penduduk',
+                        'value' => $total . ' jiwa',
+                        'icon' => 'bi-people-fill',
+                        'color' => 'primary',
+                    ],
+                    ['label' => 'Laki-laki', 'value' => $laki_laki, 'icon' => 'bi-gender-male', 'color' => 'info'],
+                    [
+                        'label' => 'Perempuan',
+                        'value' => $perempuan,
+                        'icon' => 'bi-gender-female',
+                        'color' => 'danger',
+                    ],
+                    [
+                        'label' => 'Kepala Keluarga',
+                        'value' => $kepala_keluarga,
+                        'icon' => 'bi-person-badge',
+                        'color' => 'success',
+                    ],
+                ];
+            @endphp
+
+            @foreach ($summaryCards as $card)
+                <div class="col-md-8 col-lg-3">
+                    <div class="card border-0 shadow-sm h-100 summary-hover transition">
+                        <div class="card-body py-4">
+                            <div class="mb-2 text-{{ $card['color'] }}">
+                                <i class="bi {{ $card['icon'] }} fs-3"></i>
+                            </div>
+                            <h6 class="text-muted mb-1">{{ $card['label'] }}</h6>
+                            <h4 class="text-{{ $card['color'] }} fw-bold">{{ $card['value'] }}</h4>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+        {{-- Card Chart Statistik --}}
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white text-center">
+                        <h5 class="mb-0">Statistik Penduduk Bulan {{ $statistik->bulan ?? '-' }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="pendudukChart" style="max-height: 300px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Load Chart.js --}}
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const ctx = document.getElementById('pendudukChart').getContext('2d');
+                const pendudukChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Laki-laki', 'Perempuan', 'Kepala Keluarga'],
+                        datasets: [{
+                            label: 'Jumlah',
+                            data: [
+                                {{ $laki_laki }},
+                                {{ $perempuan }},
+                                {{ $kepala_keluarga ?? 0 }}
+                            ],
+                            backgroundColor: [
+                                'rgba(54, 162, 235, 0.7)',
+                                'rgba(255, 99, 132, 0.7)',
+                                'rgba(255, 206, 86, 0.7)'
+                            ],
+                            borderColor: [
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(255, 206, 86, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    font: {
+                                        size: 14
+                                    }
+                                }
+                            },
+                            title: {
+                                display: false
+                            },
+                            tooltip: {
+                                enabled: true
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
+
+
         {{-- Section Tentang Desa --}}
         <section class="py-20 bg-white" data-aos="fade-up" data-aos-duration="1500">
             <div class="max-w-6xl mx-auto px-6">

@@ -114,7 +114,18 @@
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
-        
+        <style>.summary-hover {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .summary-hover:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+
+
     </style>
 
 </head>

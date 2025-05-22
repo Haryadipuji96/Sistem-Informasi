@@ -22,6 +22,7 @@ use App\Http\Controllers\ApbdesReportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\KritikSaranController;
+use App\Http\Controllers\StatistikPendudukController;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -97,7 +98,6 @@ Route::resource('berita', BeritaController::class);
 
 
 Route::middleware('auth')->group(function () {
-    Route::resource('penduduk', PendudukController::class)->middleware('auth'); 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -111,13 +111,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/apbdes/{id}/edit', [ApbdesController::class, 'edit'])->name('apbdes.edit');
     Route::put('/apbdes/{id}', [ApbdesController::class, 'update'])->name('apbdes.update');
     Route::delete('/apbdes/{id}', [ApbdesController::class, 'destroy'])->name('apbdes.destroy');
-    
+    Route::resource('statistik', StatistikPendudukController::class);
+
     //    Route kritik dan saran khusus admin
     Route::middleware(['auth'])->group(function () {
         Route::get('/admin/kritik-saran', [KritikSaranController::class, 'index'])->name('kritik-saran.index');
         Route::delete('/admin/kritik-saran/{id}', [KritikSaranController::class, 'destroy'])->name('kritik-saran.destroy');
     });
-    
+
     // Tampilkan form tambah event
     // Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
     // Simpan event baru
