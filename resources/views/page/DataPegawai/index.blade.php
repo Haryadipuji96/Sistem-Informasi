@@ -8,13 +8,15 @@
             <!-- Form Pencarian -->
             <div class="mb-6">
                 <form id="searchForm" action="{{ route('DataPegawai.index') }}" method="GET"
-                    class="flex items-center space-x-2"">
+                    class="flex items-center space-x-2">
                     <!-- Input Pencarian -->
-                    <div class="relative w-full max-w-md ">
+                    <div class="relative w-full max-w-md">
                         <input type="text" name="search" placeholder="Cari Nama Pegawai..."
                             value="{{ request('search') }}"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     </div>
+
                     <!-- Tombol Cari -->
                     <button type="submit"
                         class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded-md text-xs text-white">
@@ -26,6 +28,19 @@
                                 class="bg-sky-600 p-2 hover:bg-sky-400 text-white rounded-xl py-2">Add</a>
                         </div>
                     @endcan
+                    <!-- Tombol Refresh -->
+                    <button type="button" id="refreshBtn"
+                        class="bg-gray-500 hover:bg-gray-600 p-2 rounded-md text-white flex items-center justify-center"
+                        title="Refresh Semua Data">
+                        <!-- Icon refresh (SVG) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5" viewBox="0 0 24 24">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <polyline points="1 20 1 14 7 14"></polyline>
+                            <path d="M3.51 9a9 9 0 0114.13-3.36L23 10"></path>
+                            <path d="M20.49 15a9 9 0 01-14.13 3.36L1 14"></path>
+                        </svg>
+                    </button>
                 </form>
             </div>
             <!-- Tabel Data Pegawai -->
@@ -199,10 +214,22 @@
     <script>
         document.getElementById('searchForm').addEventListener('submit', function(e) {
             e.preventDefault(); // cegah reload halaman
-        
+
             let query = this.search.value;
-        
-            fetch("{{ route('DataPegawai.search') }}?search=" + encodeURIComponent(query), {
+
+            let query = this.search.value;
+            const url = "{{ route('DataPegawai.search') }}" + "?search=" + encodeURIComponent(query);
+            console.log('FETCHING:', url);
+
+            fetch(url, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                ...
+
+
+                fetch("{{ route('DataPegawai.search') }}?search=" + encodeURIComponent(query), {
                     headers: {
                         'X-Requested-With': 'XMLHttpRequest'
                     }
@@ -214,12 +241,13 @@
                 .then(data => {
                     const tbody = document.querySelector('tbody'); // Bisa ganti dengan yang lebih spesifik
                     tbody.innerHTML = ''; // kosongkan dulu isi tabel
-        
+
                     if (!data.data || data.data.length === 0) {
-                        tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4">Data tidak ditemukan.</td></tr>';
+                        tbody.innerHTML =
+                            '<tr><td colspan="7" class="text-center py-4">Data tidak ditemukan.</td></tr>';
                         return;
                     }
-        
+
                     data.data.forEach((employee, index) => {
                         tbody.innerHTML += `
                         <tr>
@@ -237,8 +265,20 @@
                 })
                 .catch(error => console.error('Error:', error));
         });
-        </script>
-        
+    </script>
+
+    <script>
+        document.getElementById('refreshBtn').addEventListener('click', function() {
+            // Kosongkan input search
+            const searchInput = document.querySelector('input[name="search"]');
+            searchInput.value = '';
+
+            // Submit form tanpa parameter search (reload halaman semua data)
+            document.getElementById('searchForm').submit();
+        });
+    </script>
+
+
 
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
