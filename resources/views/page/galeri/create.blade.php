@@ -7,7 +7,7 @@
 
     <div class="py-12 max-w-3xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
-            <form action="{{ route('galeri.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('galeris.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-4">
                     <label for="judul" class="block text-gray-700 dark:text-gray-300 font-bold mb-2">Judul Foto</label>

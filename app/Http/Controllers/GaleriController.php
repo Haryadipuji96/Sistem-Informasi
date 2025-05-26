@@ -30,17 +30,19 @@ class GaleriController extends Controller
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $path = $request->file('gambar')->store('galeri', 'public');
+        $gambar = $request->file('gambar');
+        $namaFile = time() . '_' . $gambar->getClientOriginalName();
+        $gambar->move(public_path('galeri'), $namaFile);
 
         Galeri::create([
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
-            'gambar' => $path,
+            'gambar' => $namaFile,
         ]);
 
-        return redirect()->route('galeri.index')->with('success', 'Foto galeri berhasil ditambahkan!');
+        return redirect()->route('galeris.index')->with('success', 'Foto galeri berhasil ditambahkan!');
     }
-    
+
     public function destroy($id)
     {
         $galeri = Galeri::findOrFail($id);
@@ -51,6 +53,6 @@ class GaleriController extends Controller
 
         $galeri->delete();
 
-        return redirect()->route('galeri.index')->with('success', 'Gambar berhasil dihapus.');
+        return redirect()->route('galeris.index')->with('success', 'Gambar berhasil dihapus.');
     }
 }

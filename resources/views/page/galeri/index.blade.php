@@ -10,7 +10,7 @@
         @can('role-A')
         {{-- Tombol Tambah Galeri --}}
         <div class="mb-6 text-end">
-            <a href="{{ route('galeri.create') }}"
+            <a href="{{ route('galeris.create') }}"
                 class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded shadow inline-block">
                 Tambah Galeri
             </a>
@@ -31,10 +31,10 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             @foreach ($galeris as $index => $galeri)
                 <div class="bg-white rounded-lg shadow-md overflow-hidden relative" data-aos="zoom-in-up"
-                    data-aos-duration="1500" data-aos-delay="{{ 200 * $index }}">
+                    data-aos-duration="1000" data-aos-delay="{{ 200 * $index }}">
                     
                     {{-- Gambar --}}
-                    <img src="{{ asset('storage/' . $galeri->gambar) }}" alt="{{ $galeri->judul }}"
+                    <img src="{{ asset('galeri/' . $galeri->gambar) }}" alt="{{ $galeri->judul }}"
                         class="w-full h-40 sm:h-48 object-cover transition-transform duration-300 hover:scale-105" />
 
                     {{-- Konten --}}

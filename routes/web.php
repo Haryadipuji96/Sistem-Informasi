@@ -90,7 +90,7 @@ Route::resource('VisiMisi', VisiMisiController::class);
 Route::get('TentangDesa', [MapController::class, 'show'])->name('page.TentangDesa.index');
 Route::resource('TentangDesa', TentangDesaController::class);
 // Route untuk galeri
-Route::resource('galeri', GaleriController::class);
+Route::resource('galeris', GaleriController::class);
 Route::delete('/galeri/{id}', [GaleriController::class, 'destroy'])->name('galeri.destroy');
 
 // Route UMKM

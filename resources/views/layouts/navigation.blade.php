@@ -66,7 +66,7 @@
                                 <x-dropdown-link :href="route('Umkm.index')">UMKM</x-dropdown-link>
                                 <x-dropdown-link :href="route('agendas.index')">Agenda Desa</x-dropdown-link>
                             @endcan
-                            <x-dropdown-link :href="route('galeri.index')">Galeri Desa</x-dropdown-link>
+                            <x-dropdown-link :href="route('galeris.index')">Galeri Desa</x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
 
@@ -142,7 +142,7 @@
             <x-responsive-nav-link :href="route('events.index')">Event</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('Umkm.index')">UMKM</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('agendas.index')">Agenda Desa</x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('galeri.index')">Galeri Desa</x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('galeris.index')">Galeri Desa</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('laporan.index')">Laporan</x-responsive-nav-link>
         </div>
 
