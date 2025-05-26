@@ -82,7 +82,7 @@ class EventController extends Controller
             ]);
         }
 
-        return redirect()->route('Events.show', $id);  // Redirect ke halaman event
+        return redirect()->route('events.show', $id);  // Redirect ke halaman event
     }
 
     public function teams(Event $event)
