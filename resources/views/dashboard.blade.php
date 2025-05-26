@@ -192,7 +192,7 @@
 
                     {{-- Konten --}}
                     <div>
-                        <h2 class="text-4xl font-bold text-gray-800 mb-6">🏡 Tentang Desa Indrajaya</h2>
+                        <h2 class="text-4xl font-bold text-gray-800 mb-6">Tentang Desa Indrajaya</h2>
                         <p class="text-gray-700 text-lg mb-4 leading-relaxed">
                             Desa Indrajaya terletak di Kecamatan Sukaratu, Kabupaten Tasikmalaya. Desa ini dikenal
                             dengan keindahan alamnya, kekayaan budaya, dan semangat gotong royong warganya.

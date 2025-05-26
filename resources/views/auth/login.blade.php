@@ -1,8 +1,10 @@
 <x-guest-layout>
     <!-- Tambahkan Bagian Selamat Datang -->
     <div class="text-center mb-6">
-        <h1 class="text-4xl font-extrabold text-amber-600 transition-all duration-300 ease-in-out transform hover:scale-105">{{ __('Selamat Datang!') }}</h1>
+        <h1 class="text-4xl font-extrabold text-amber-600 transition-all duration-300 ease-in-out transform hover:scale-105">{{ __('Selamat Datang Di Halaman Admin!') }}</h1>
+        
         <p class="text-lg text-gray-500 mt-2">{{ __('Silakan masuk untuk melanjutkan.') }}</p>
+        
     </div>
 
     <!-- Session Status -->
