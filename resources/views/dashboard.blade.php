@@ -112,7 +112,11 @@
             <div class="col-md-6">
                 <div class="card border-0 shadow-sm">
                     <div class="card-header bg-white text-center">
-                        <h5 class="mb-0">Statistik Penduduk Bulan {{ $statistik->bulan ?? '-' }}</h5>
+                        <h5 class="mb-0">
+                            Statistik Penduduk Bulan
+                            {{ \Carbon\Carbon::parse($statistik?->created_at)->translatedFormat('F Y') ?? '-' }}
+                        </h5>
+
                     </div>
                     <div class="card-body">
                         <canvas id="pendudukChart" style="max-height: 300px;"></canvas>

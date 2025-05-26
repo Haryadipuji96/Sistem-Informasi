@@ -23,7 +23,7 @@ class EventController extends Controller
         $events = Event::findOrFail($id);
     
         // Kirim data ke view
-        return view('page.events.show', compact('events'));
+        return view('page.Events.show', compact('events'));
     }
 
     public function create()
@@ -82,7 +82,7 @@ class EventController extends Controller
             ]);
         }
 
-        return redirect()->route('events.show', $id);  // Redirect ke halaman event
+        return redirect()->route('Events.show', $id);  // Redirect ke halaman event
     }
 
     public function teams(Event $event)

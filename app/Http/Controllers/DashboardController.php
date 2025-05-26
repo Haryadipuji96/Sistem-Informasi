@@ -15,8 +15,9 @@ class DashboardController extends Controller
         $berita = Berita::all();
         $statistik = StatistikPenduduk::latest()->first();
         $statistik = StatistikPenduduk::orderBy('id', 'desc')->first();
+        
 
-
+        
         $laki_laki = $statistik?->laki_laki ?? 0;
         $perempuan = $statistik?->perempuan ?? 0;
         $kepala_keluarga = $statistik?->kepala_keluarga ?? 0;
