@@ -21,6 +21,7 @@ use App\Http\Controllers\ApbdesController;
 use App\Http\Controllers\ApbdesReportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\KritikSaranController;
 use App\Http\Controllers\StatistikPendudukController;
 
@@ -84,12 +85,15 @@ Route::get('/dashboard', function () {
 // Menampilkan detail berita dengan format halaman-berita-{id}
 // Route manual berita dengan URL spesifik
 Route::get('/halaman-berita-{id}', [BeritaController::class, 'show'])->name('halaman.berita');
-
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::resource('VisiMisi', VisiMisiController::class);
 Route::get('TentangDesa', [MapController::class, 'show'])->name('page.TentangDesa.index');
 Route::resource('TentangDesa', TentangDesaController::class);
-Route::resource('GaleriDesa', GaleriDesaController::class);
+// Route untuk galeri
+Route::resource('galeri', GaleriController::class);
+Route::delete('/galeri/{id}', [GaleriController::class, 'destroy'])->name('galeri.destroy');
+
+// Route UMKM
 Route::resource('Umkm', UmkmController::class);
 Route::resource('ProfileKepalaDesa', ProfileKepalaDesaController::class);
 Route::resource('berita', BeritaController::class);
