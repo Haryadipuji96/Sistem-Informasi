@@ -16,6 +16,6 @@ class DataPegawai extends Model
         'gender',
         'pendidikan',
     ];
-    protected $table = 'DataPegawai'; // Sesuaikan dengan nama tabel di database
+    protected $table = 'datapegawai'; // Sesuaikan dengan nama tabel di database
 }
 
