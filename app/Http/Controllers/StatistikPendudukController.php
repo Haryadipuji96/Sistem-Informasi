@@ -16,12 +16,12 @@ class StatistikPendudukController extends Controller
         $perempuan = $statistik->sum('perempuan');
         $kepala_keluarga = $statistik->sum('kepala_keluarga');
 
-        return view('page.statistik.index', compact('statistik', 'total', 'laki_laki', 'perempuan', 'kepala_keluarga'));
+        return view('page.Statistik.index', compact('statistik', 'total', 'laki_laki', 'perempuan', 'kepala_keluarga'));
     }
 
     public function create()
     {
-        return view('page.statistik.create');
+        return view('page.Statistik.create');
     }
 
     public function store(Request $request)
