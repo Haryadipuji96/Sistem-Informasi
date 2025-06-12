@@ -87,9 +87,8 @@
                 <div class="mb-3">
                     <label class="block text-sm font-medium mb-1">Status</label>
                     <select id="edit_status" name="status" class="w-full border px-3 py-2 rounded">
-                        <option value="upcoming" {{ $agenda->status === 'upcoming' ? 'selected' : '' }}>Aktif</option>
-                        <option value="completed" {{ $agenda->status === 'completed' ? 'selected' : '' }}>Selesai
-                        </option>
+                        <option value="upcoming">Aktif</option>
+                        <option value="completed">Selesai</option>
                     </select>
                 </div>
 
