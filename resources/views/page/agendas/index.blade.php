@@ -9,12 +9,12 @@
             Agenda Desa
         </h1>
 
-
         @if (session('success'))
             <div class="mb-4 text-green-600 font-semibold">
                 {{ session('success') }}
             </div>
         @endif
+
         @can('role-A')
             <div class="mb-6 text-right">
                 <a href="{{ route('agendas.create') }}"
@@ -23,12 +23,14 @@
                 </a>
             </div>
         @endcan
+
         <div class="overflow-x-auto">
             <table class="w-full table-auto border border-gray-300 rounded-lg">
                 <thead class="bg-gray-100">
                     <tr>
                         <th class="px-4 py-2 text-left">Judul</th>
                         <th class="px-4 py-2 text-left">Tanggal</th>
+                        <th class="px-4 py-2 text-left">Deskripsi</th>
                         <th class="px-4 py-2 text-left">Status</th>
                         <th class="px-4 py-2 text-left">Aksi</th>
                     </tr>
@@ -38,11 +40,12 @@
                         <tr class="border-t">
                             <td class="px-4 py-2">{{ $agenda->title }}</td>
                             <td class="px-4 py-2">{{ \Carbon\Carbon::parse($agenda->event_date)->format('d M Y') }}</td>
+                            <td class="px-4 py-2">{{ $agenda->description }}</td>
                             <td class="px-4 py-2">{{ ucfirst($agenda->status) }}</td>
                             <td class="px-4 py-2">
                                 @can('role-A')
                                     <button
-                                        onclick="openEditModal({{ $agenda->id }}, '{{ $agenda->title }}', '{{ $agenda->event_date }}', '{{ $agenda->status }}')"
+                                        onclick="openEditModal({{ $agenda->id }}, '{{ addslashes($agenda->title) }}', '{{ $agenda->event_date }}', '{{ $agenda->status }}', `{{ addslashes($agenda->description) }}`)"
                                         class="text-sm bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">Edit</button>
 
                                     <form action="{{ route('agendas.destroy', $agenda->id) }}" method="POST"
@@ -57,8 +60,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="px-4 py-4 text-center text-gray-500">Belum ada agenda yang
-                                ditambahkan.</td>
+                            <td colspan="5" class="px-4 py-4 text-center text-gray-500">Belum ada agenda yang ditambahkan.</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -74,16 +76,22 @@
                 @csrf
                 @method('PUT')
                 <input type="hidden" id="edit_id">
+                
                 <div class="mb-3">
                     <label class="block text-sm font-medium mb-1">Judul</label>
-                    <input type="text" id="edit_title" name="title" class="w-full border px-3 py-2 rounded"
-                        required>
+                    <input type="text" id="edit_title" name="title" class="w-full border px-3 py-2 rounded" required>
                 </div>
+                
                 <div class="mb-3">
                     <label class="block text-sm font-medium mb-1">Tanggal</label>
-                    <input type="date" id="edit_event_date" name="event_date" class="w-full border px-3 py-2 rounded"
-                        required>
+                    <input type="date" id="edit_event_date" name="event_date" class="w-full border px-3 py-2 rounded" required>
                 </div>
+                
+                <div class="mb-3">
+                    <label class="block text-sm font-medium mb-1">Deskripsi</label>
+                    <textarea id="edit_description" name="description" rows="3" class="w-full border px-3 py-2 rounded" required></textarea>
+                </div>
+                
                 <div class="mb-3">
                     <label class="block text-sm font-medium mb-1">Status</label>
                     <select id="edit_status" name="status" class="w-full border px-3 py-2 rounded">
@@ -93,8 +101,7 @@
                 </div>
 
                 <div class="text-right">
-                    <button type="button" onclick="closeEditModal()"
-                        class="mr-2 px-4 py-2 border rounded">Batal</button>
+                    <button type="button" onclick="closeEditModal()" class="mr-2 px-4 py-2 border rounded">Batal</button>
                     <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Simpan</button>
                 </div>
             </form>
@@ -102,8 +109,7 @@
     </div>
 
     <script>
-        function openEditModal(id, title, date, status) {
-            // Mapping status label ke value enum
+        function openEditModal(id, title, date, status, description) {
             const statusMap = {
                 'aktif': 'upcoming',
                 'selesai': 'completed',
@@ -112,13 +118,13 @@
                 'upcoming': 'upcoming',
                 'completed': 'completed'
             };
-
             const mappedStatus = statusMap[status] ?? 'upcoming';
 
             document.getElementById('edit_id').value = id;
             document.getElementById('edit_title').value = title;
             document.getElementById('edit_event_date').value = date;
             document.getElementById('edit_status').value = mappedStatus;
+            document.getElementById('edit_description').value = description;
 
             const form = document.getElementById('editForm');
             form.action = '/agendas/' + id;
@@ -132,5 +138,4 @@
             document.getElementById('editModal').classList.remove('flex');
         }
     </script>
-
 </x-app-layout>

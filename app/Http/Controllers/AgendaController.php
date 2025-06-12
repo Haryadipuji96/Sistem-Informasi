@@ -41,6 +41,7 @@ class AgendaController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'event_date' => 'required|date',
+            'description' => 'required|string|max:1000',
             'status' => 'required|in:upcoming,completed',
         ]);
 
@@ -48,11 +49,13 @@ class AgendaController extends Controller
         $agenda->update([
             'title' => $request->title,
             'event_date' => $request->event_date,
+            'description' => $request->description,
             'status' => $request->status,
         ]);
 
         return redirect()->route('agendas.index')->with('success', 'Agenda berhasil diperbarui.');
     }
+
 
 
 
