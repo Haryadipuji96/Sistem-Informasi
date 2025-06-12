@@ -77,7 +77,7 @@
                 <div class="mb-3">
                     <label class="block text-sm font-medium mb-1">Status</label>
                     <select id="edit_status" name="status" class="w-full border px-3 py-2 rounded">
-                        <option value="aktif">Aktif</option>
+                        <option value="upcoming">Aktif</option>
                         <option value="selesai">Selesai</option>
                     </select>
                 </div>

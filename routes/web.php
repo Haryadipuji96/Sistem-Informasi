@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Controller\ErrorController;
 use App\Http\Controllers\ApbdesController;
 use App\Http\Controllers\ApbdesReportController;
+use App\Http\Controllers\BantuanSosialController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\GaleriController;
@@ -98,7 +99,9 @@ Route::resource('Umkm', UmkmController::class);
 Route::resource('ProfileKepalaDesa', ProfileKepalaDesaController::class);
 Route::resource('berita', BeritaController::class);
 
-
+// Route Info Bantuan Sosial
+Route::resource('/bantuan-sosial', BantuanSosialController::class)->except(['create', 'edit', 'show']);
+Route::get('/bantuan-sosial/export/pdf', [BantuanSosialController::class, 'exportPdf'])->name('bantuan-sosial.export.pdf');
 
 
 Route::middleware('auth')->group(function () {
