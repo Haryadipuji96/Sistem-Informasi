@@ -41,7 +41,7 @@ class EventController extends Controller
 
         Event::create($validated);
 
-        return redirect()->route('Events.index')->with('success', 'Event berhasil ditambahkan!');
+        return redirect()->route('events.index')->with('success', 'Event berhasil ditambahkan!');
     }
 
     // Menampilkan form pendaftaran tim
