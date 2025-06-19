@@ -12,7 +12,7 @@
         <div class="mb-6 text-end">
             <a href="{{ route('galeris.create') }}"
                 class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded shadow inline-block">
-                Tambah Galeri
+                <i class="bi bi-plus-circle"></i> Tambah Galeri
             </a>
         </div>
         @endcan
@@ -54,7 +54,7 @@
                             @method('DELETE')
                             <button type="submit"
                                 class="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-sm rounded shadow">
-                                Hapus
+                                 <i class="bi bi-trash"></i>
                             </button>
                         </form>
                         @endcan

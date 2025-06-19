@@ -12,7 +12,7 @@
         <div class="mb-6 text-right">
             <a href="{{ route('apbdes.create') }}"
                 class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
-                ➕ Tambah Data
+                <i class="bi bi-plus-circle"></i> Tambah Data
             </a>
         </div>
         @endcan
@@ -38,9 +38,9 @@
                             <td class="px-4 py-2 flex space-x-2">
                                 @can('role-A')
                                 <button 
-                                    class="text-sm bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600"
+                                    class="text-sm bg-yellow-500 text-black px-3 py-1 rounded hover:bg-yellow-600"
                                     onclick="openModal({{ $row->id }})">
-                                    Edit
+                                     <i class="bi bi-pencil-square"></i>
                                 </button>
 
                                 <form action="{{ route('apbdes.destroy', $row->id) }}" method="POST"
@@ -49,7 +49,7 @@
                                     @method('DELETE')
                                     <button type="submit"
                                         class="text-sm bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">
-                                        Hapus
+                                        <i class="bi bi-trash"></i>
                                     </button>
                                 </form>
                                 @endcan

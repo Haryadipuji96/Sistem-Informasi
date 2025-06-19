@@ -5,14 +5,14 @@
             <div class="flex items-center justify-between mb-6 font-semibold text-xl">
                 <div>DATA UMKM</div>
                 @can('role-A')
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
-                    Tambah UMKM
-                </button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+                        <i class="bi bi-plus-circle"></i> Tambah Umkm
+                    </button>
                 @endcan
             </div>
 
             <!-- Tabel Data UMKM -->
-             <div class="overflow-x-auto">
+            <div class="overflow-x-auto">
                 <div class="w-full table-auto border border-gray-300 rounded-lg">
                     <div class="p-12" style="width:100%; overflow-x:auto;">
                         <table class="min-w-full bg-white border border-gray-300">
@@ -37,27 +37,26 @@
                                         <td class="py-2 px-4 border-b">{{ $umkm->alamat }}</td>
                                         <td class="py-2 px-4 border-b">{{ $umkm->jenis_usaha }}</td>
                                         <td class="py-2 px-4 border-b">{{ $umkm->jumlah_karyawan ?? '0' }}</td>
-                                        <td class="py-2 px-4 border-b">Rp {{ number_format($umkm->modal, 0, ',', '.') }}</td>
+                                        <td class="py-2 px-4 border-b">Rp {{ number_format($umkm->modal, 0, ',', '.') }}
+                                        </td>
                                         <td class="px-6 py-4">
                                             @can('role-A')
-                                            <!-- Tombol Edit -->
-                                            <button type="button" data-id="{{ $umkm->id }}"
-                                                data-nama_umkm="{{ $umkm->nama_umkm }}" data-modal-target="editModal"
-                                                data-pemilik="{{ $umkm->pemilik }}"
-                                                data-alamat="{{ $umkm->alamat }}"
-                                                data-jenis_usaha="{{ $umkm->jenis_usaha }}"
-                                                data-jumlah_karyawan="{{ $umkm->jumlah_karyawan }}"
-                                                data-modal="{{ $umkm->modal }}"
-                                                onclick="editSourceModal(this)"
-                                                class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
-                                                Edit
-                                            </button>
-                                            <!-- Tombol Delete -->
-                                            <button
-                                                onclick="deleteEmployee({{ $umkm->id }}, '{{ $umkm->nama_umkm }}')"
-                                                class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded-md text-xs text-white ml-2">
-                                                Delete
-                                            </button>
+                                                <!-- Tombol Edit -->
+                                                <button type="button" data-id="{{ $umkm->id }}"
+                                                    data-nama_umkm="{{ $umkm->nama_umkm }}" data-modal-target="editModal"
+                                                    data-pemilik="{{ $umkm->pemilik }}" data-alamat="{{ $umkm->alamat }}"
+                                                    data-jenis_usaha="{{ $umkm->jenis_usaha }}"
+                                                    data-jumlah_karyawan="{{ $umkm->jumlah_karyawan }}"
+                                                    data-modal="{{ $umkm->modal }}" onclick="editSourceModal(this)"
+                                                    class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-black">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </button>
+                                                <!-- Tombol Delete -->
+                                                <button
+                                                    onclick="deleteEmployee({{ $umkm->id }}, '{{ $umkm->nama_umkm }}')"
+                                                    class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded-md text-xs text-white ml-2">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
                                             @endcan
                                         </td>
                                     </tr>
@@ -139,14 +138,16 @@
                         </div>
                         <!-- Pemilik -->
                         <div class="mb-5">
-                            <label for="edit_pemilik" class="block mb-2 text-sm font-medium text-gray-900">Pemilik</label>
+                            <label for="edit_pemilik"
+                                class="block mb-2 text-sm font-medium text-gray-900">Pemilik</label>
                             <input type="text" id="edit_pemilik" name="edit_pemilik"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 placeholder="Masukkan pemilik..." required>
                         </div>
                         <!-- Alamat -->
                         <div class="mb-5">
-                            <label for="edit_alamat" class="block mb-2 text-sm font-medium text-gray-900">Alamat</label>
+                            <label for="edit_alamat"
+                                class="block mb-2 text-sm font-medium text-gray-900">Alamat</label>
                             <input type="text" id="edit_alamat" name="edit_alamat"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 placeholder="Masukkan alamat..." required>
@@ -161,7 +162,8 @@
                         </div>
                         <!-- Jumlah Karyawan -->
                         <div class="mb-5">
-                            <label for="edit_jumlah_karyawan" class="block mb-2 text-sm font-medium text-gray-900">Jumlah
+                            <label for="edit_jumlah_karyawan"
+                                class="block mb-2 text-sm font-medium text-gray-900">Jumlah
                                 Karyawan</label>
                             <input type="number" id="edit_jumlah_karyawan" name="edit_jumlah_karyawan"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"

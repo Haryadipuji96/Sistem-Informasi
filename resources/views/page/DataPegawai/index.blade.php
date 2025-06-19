@@ -25,7 +25,7 @@
                     @can('role-A')
                         <div>
                             <a href="{{ route('DataPegawai.create') }}" onclick="return functionAdd()"
-                                class="bg-sky-600 p-2 hover:bg-sky-400 text-white rounded-xl py-2">Add</a>
+                                class="bg-sky-600 p-2 hover:bg-sky-400 text-white rounded-xl py-2"><i class="bi bi-plus-circle"></i> Add</a>
                         </div>
                     @endcan
                     <!-- Tombol Refresh -->
@@ -56,7 +56,7 @@
                                     <th class="py-2 px-4 border-b">Alamat</th>
                                     <th class="py-2 px-4 border-b">Gender</th>
                                     <th class="py-2 px-4 border-b">Pendidikan</th>
-
+                                    <th class="py-2 px-4 border-b">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -71,21 +71,21 @@
                                         <td class="px-6 py-4">
                                             @can('role-A')
                                                 <!-- Tombol Edit -->
-                                                <button type="button" data-id="{{ $employee->id }}"
-                                                    data-name="{{ $employee->name }}" data-modal-target="sourceModal"
+                                                <button class="btn btn-sm btn-warning" type="button"
+                                                    data-id="{{ $employee->id }}" data-name="{{ $employee->name }}"
+                                                    data-modal-target="sourceModal"
                                                     data-position="{{ $employee->position }}"
                                                     data-address="{{ $employee->address }}"
                                                     data-gender="{{ $employee->gender }}"
                                                     data-pendidikan="{{ $employee->pendidikan }}"
-                                                    onclick="editSourceModal(this)"
-                                                    class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
-                                                    Edit
+                                                    onclick="editSourceModal(this)" title="Edit Data">
+                                                    <i class="bi bi-pencil-square"></i>
                                                 </button>
                                                 <!-- Tombol Delete -->
-                                                <button
+                                                <button class="btn btn-sm btn-danger"
                                                     onclick="deleteEmployee({{ $employee->id }}, '{{ $employee->name }}')"
-                                                    class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded-md text-xs text-white ml-2">
-                                                    Delete
+                                                    class="btn btn-sm btn-danger" title="Hapus Data">
+                                                    <i class="bi bi-trash"></i>
                                                 </button>
                                             @endcan
                                         </td>

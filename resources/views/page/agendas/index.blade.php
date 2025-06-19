@@ -19,7 +19,7 @@
             <div class="mb-6 text-right">
                 <a href="{{ route('agendas.create') }}"
                     class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
-                    ➕ Tambah Agenda Baru
+                    <i class="bi bi-plus-circle"></i> Tambah Agenda Baru
                 </a>
             </div>
         @endcan
@@ -46,21 +46,24 @@
                                 @can('role-A')
                                     <button
                                         onclick="openEditModal({{ $agenda->id }}, '{{ addslashes($agenda->title) }}', '{{ $agenda->event_date }}', '{{ $agenda->status }}', `{{ addslashes($agenda->description) }}`)"
-                                        class="text-sm bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">Edit</button>
+                                        class="text-sm bg-yellow-500 text-black px-3 py-1 rounded hover:bg-yellow-600"> <i
+                                            class="bi bi-pencil-square"></i></button>
 
                                     <form action="{{ route('agendas.destroy', $agenda->id) }}" method="POST"
                                         onsubmit="return confirm('Yakin ingin menghapus data ini?')" class="inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
-                                            class="text-sm bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Hapus</button>
+                                            class="text-sm bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"> <i
+                                                class="bi bi-trash"></i></button>
                                     </form>
                                 @endcan
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="px-4 py-4 text-center text-gray-500">Belum ada agenda yang ditambahkan.</td>
+                            <td colspan="5" class="px-4 py-4 text-center text-gray-500">Belum ada agenda yang
+                                ditambahkan.</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -76,22 +79,24 @@
                 @csrf
                 @method('PUT')
                 <input type="hidden" id="edit_id">
-                
+
                 <div class="mb-3">
                     <label class="block text-sm font-medium mb-1">Judul</label>
-                    <input type="text" id="edit_title" name="title" class="w-full border px-3 py-2 rounded" required>
+                    <input type="text" id="edit_title" name="title" class="w-full border px-3 py-2 rounded"
+                        required>
                 </div>
-                
+
                 <div class="mb-3">
                     <label class="block text-sm font-medium mb-1">Tanggal</label>
-                    <input type="date" id="edit_event_date" name="event_date" class="w-full border px-3 py-2 rounded" required>
+                    <input type="date" id="edit_event_date" name="event_date" class="w-full border px-3 py-2 rounded"
+                        required>
                 </div>
-                
+
                 <div class="mb-3">
                     <label class="block text-sm font-medium mb-1">Deskripsi</label>
                     <textarea id="edit_description" name="description" rows="3" class="w-full border px-3 py-2 rounded" required></textarea>
                 </div>
-                
+
                 <div class="mb-3">
                     <label class="block text-sm font-medium mb-1">Status</label>
                     <select id="edit_status" name="status" class="w-full border px-3 py-2 rounded">
@@ -101,7 +106,8 @@
                 </div>
 
                 <div class="text-right">
-                    <button type="button" onclick="closeEditModal()" class="mr-2 px-4 py-2 border rounded">Batal</button>
+                    <button type="button" onclick="closeEditModal()"
+                        class="mr-2 px-4 py-2 border rounded">Batal</button>
                     <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Simpan</button>
                 </div>
             </form>

@@ -74,7 +74,7 @@
                     </div>
                     <div class="col-md-1">
                         <button type="submit" class="btn btn-info w-100">
-                            <i class="bi bi-plus"></i> Tambah
+                            <i class="bi bi-plus-circle"></i> Tambah
                         </button>
 
                     </div>
@@ -108,11 +108,13 @@
                                 <td>{{ $item->kepala_keluarga }}</td>
                                 <td>
                                     <button class="btn btn-sm btn-warning" data-bs-toggle="modal"
-                                        data-bs-target="#editModal{{ $item->id }}">Edit</button>
+                                        data-bs-target="#editModal{{ $item->id }}">
+                                         <i class="bi bi-pencil-square"></i>
+                                    </button>
                                     <form action="{{ route('statistik.destroy', $item->id) }}" method="POST"
                                         class="d-inline" onsubmit="return confirm('Hapus data ini?')">
                                         @csrf @method('DELETE')
-                                        <button class="btn btn-sm btn-danger">Hapus</button>
+                                        <button class="btn btn-sm btn-danger"> <i class="bi bi-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>

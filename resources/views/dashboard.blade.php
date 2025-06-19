@@ -218,38 +218,39 @@
             <div class="text-start mb-5">
                 <h4 class="display-5 fw-bold text-gray-800">📰 Berita Terkini</h4>
 
-                <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
-                    @foreach ($berita as $b)
-                        <div class="col">
-                            <a href="{{ route('berita.show', $b->id) }}" class="card-link">
-                                <div class="card h-100 shadow-md hover:shadow-lg transition duration-300">
-                                    {{-- Gambar Berita --}}
-                                    @if ($b->image)
-                                        <img src="{{ asset('image/' . $b->image) }}"
-                                            class="card-img-top img-fluid zoom-effect"
-                                            alt="Berita {{ $b->title }}">
-                                    @else
-                                        <img src="{{ asset('image/default-image.jpg') }}"
-                                            class="card-img-top img-fluid zoom-effect" alt="Berita Default">
-                                    @endif
-                                    <div class="card-body">
-                                        <h5 class="card-title font-bold">{{ $b->title }}</h5>
-                                        <p class="card-text">
-                                            {{-- Menambahkan pengecekan apakah created_at ada --}}
-                                            <small class="text-muted">
-                                                @if ($b->tgl_berita)
-                                                    {{ date('d-m-Y H:i', strtotime($b->tgl_berita)) }} WIB
-                                                @else
-                                                    Tanggal tidak tersedia
-                                                @endif
-                                            </small>
-                                        </p>
+                {{-- Wrapper Scroll Horizontal --}}
+                <div class="overflow-x-auto mt-4">
+                    <div class="flex gap-4 w-max pb-2">
+                        @foreach ($berita as $b)
+                            <div class="flex-shrink-0" style="width: 250px;">
+                                <a href="{{ route('berita.show', $b->id) }}" class="card-link text-decoration-none">
+                                    <div class="card h-100 shadow-md hover:shadow-lg transition duration-300">
+                                        {{-- Gambar Berita --}}
+                                        @if ($b->image)
+                                            <img src="{{ asset('image/' . $b->image) }}"
+                                                class="card-img-top img-fluid zoom-effect"
+                                                alt="Berita {{ $b->title }}">
+                                        @else
+                                            <img src="{{ asset('image/default-image.jpg') }}"
+                                                class="card-img-top img-fluid zoom-effect" alt="Berita Default">
+                                        @endif
+                                        <div class="card-body">
+                                            <h5 class="card-title font-bold text-dark">{{ $b->title }}</h5>
+                                            <p class="card-text">
+                                                <small class="text-muted">
+                                                    @if ($b->tgl_berita)
+                                                        {{ date('d-m-Y H:i', strtotime($b->tgl_berita)) }} WIB
+                                                    @else
+                                                        Tanggal tidak tersedia
+                                                    @endif
+                                                </small>
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-
-                        </div>
-                    @endforeach
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>

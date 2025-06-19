@@ -21,7 +21,7 @@ class EventController extends Controller
     {
         // Ambil event berdasarkan ID
         $events = Event::findOrFail($id);
-    
+
         // Kirim data ke view
         return view('page.Events.show', compact('events'));
     }
@@ -91,5 +91,13 @@ class EventController extends Controller
         $teams = TeamRegistration::where('event_id', $event->id)->paginate(5);
         // dd($teams);
         return view('page.Events.teamsMembers', compact('event', 'teams'));
+    }
+
+    public function destroy($id)
+    {
+        $event = Event::findOrFail($id);
+        $event->delete();
+
+        return redirect()->route('events.index')->with('success', 'Event berhasil dihapus.');
     }
 }
